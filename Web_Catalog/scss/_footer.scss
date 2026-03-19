@@ -1,150 +1,22 @@
-// --- HEADER ---
-.header {
+.footer {
   width: 100%;
-  height: 65px;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 
-    0px 1px 3px 0px rgba(0, 0, 0, 0.1),
-    0px 1px 2px -1px rgba(0, 0, 0, 0.1);
-  display: flex; 
+  background-color: #F9FAFB;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: 84px 32px 32px 102px;
 
   &_container {
     width: 100%;
-    max-width: 1440px; 
-    padding: 0 20px;
-    height: 100%;
-  }
-
-  &_wrapper {
+    max-width: 1280px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-  }
-
-  &_logo {
-    display: flex;
-    align-items: center;
-    gap: 12px; 
-    text-decoration: none;
-
-    &-icon {
-      width: 40px; 
-      height: 40px;
-      background: linear-gradient(135deg, #155DFC 0%, #9810FA 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 20px;
-      color: white;
-    }
-
-    &-text {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 28px;
-      letter-spacing: -0.45px;
-      color: #0A0A0A;
-    }
-  }
-
-  &_nav {
-    display: flex;
-    gap: 32px; 
-  }
-
-  &_link {
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.31px;
-    color: #364153;
-    transition: color 0.2s;
-
-    &:hover {
-      color: #155DFC; 
-    }
-  }
-
-  &_actions {
-    display: flex;
-    align-items: center;
-    gap: 16px; 
-  }
-
-  &_btn {
-    width: 40px;
-    height: 40px; 
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111827; 
-    transition: all 0.2s ease-in-out;
-    position: relative;
-
-    &:hover {
-      background-color: #F3F4F6; 
-      color: #000000; 
-    }
-  }
-
-  &_icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  &_badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 18px;
-    height: 18px;
-    background-color: #155DFC;
-    color: white;
-    border-radius: 50%;
-    border: 2px solid #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-// --- FOOTER ---
-.footer {
-  background-color: #F9FAFB;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 64px;
-  padding-bottom: 24px;
-  width: 100%;
-
-  &_container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 20px;
+    flex-direction: column;
   }
 
   &_grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1.2fr;
     gap: 32px;
-    margin-bottom: 64px;
   }
 
   &_logo {
@@ -155,7 +27,7 @@
     margin-bottom: 24px;
 
     &-icon {
-      width: 40px; 
+      width: 40px;
       height: 40px;
       background: linear-gradient(135deg, #155DFC 0%, #9810FA 100%);
       border-radius: 8px;
@@ -168,18 +40,18 @@
     }
 
     &-text {
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-weight: 700;
       font-size: 20px;
       color: #0A0A0A;
-      font-style: normal; // "Bold" is usually font-weight, style is normal/italic
+      font-style: normal;
       line-height: 28px;
       letter-spacing: -0.45px;
     }
   }
 
   &_text {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
@@ -202,10 +74,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #364153; 
+    color: #364153;
     text-decoration: none;
     transition: all 0.2s;
-    font-size: 16px; 
+    font-size: 16px;
 
     &:hover {
       background-color: #155DFC;
@@ -215,7 +87,7 @@
 
   &_title {
     color: #0A0A0A;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
@@ -229,13 +101,13 @@
     margin: 0;
 
     li {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
   }
 
   &_link {
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #4A5565;
@@ -250,18 +122,19 @@
     margin-top: 24px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
 
   &_label,
   &_email {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 14px;
     color: #4A5565;
+    text-decoration: none;
   }
 
   &_phone {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 14px;
     color: #0A0A0A;
@@ -282,7 +155,7 @@
     border: 1px solid #D1D5DC;
     background-color: #FFFFFF;
     outline: none;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 100%;
@@ -290,7 +163,7 @@
     color: #0A0A0A;
 
     &::placeholder {
-      color: rgba(10, 10, 10, 0.5); 
+      color: rgba(10, 10, 10, 0.5);
     }
 
     &:focus {
@@ -306,7 +179,7 @@
     color: #FFFFFF;
     border: none;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
@@ -323,18 +196,18 @@
 
   &_bottom {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 33px;
+    padding-top: 32px;
+    margin-top: 64px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     text-align: center;
 
     p {
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
       color: #4A5565;
       margin: 0;
     }
@@ -345,11 +218,9 @@
 
       a {
         text-decoration: none;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 14px;
         font-weight: 400;
-        line-height: 20px;
-        letter-spacing: -0.15px;
         color: #4A5565;
         transition: color 0.2s;
 

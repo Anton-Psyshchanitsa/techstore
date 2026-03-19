@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device_width, initial-scale=1.0">
     <title>TechStore</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Убедись, что путь к стилям верный -->
-    <link rel="stylesheet" href="scss/style.css">
-    
+
+    <link rel="stylesheet" href="scss/styles.css">
+
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <header class="header">
         <div class="header_container">
-            <!-- Добавил wrapper, так как в CSS он отвечает за flex-позиционирование -->
             <div class="header_wrapper">
                 <a href="#" class="header_logo">
                     <div class="header_logo-icon">T</div>
@@ -38,28 +38,252 @@
                     </button>
                     <button class="header_btn">
                         <i data-lucide="shopping-cart" class="header_icon"></i>
-                        <!-- Добавил бейдж, так как он есть в CSS -->
                         <span class="header_badge">2</span>
                     </button>
                 </div>
+
             </div>
         </div>
     </header>
 
-    <main class="main-spacer"></main>
+    <main class="main">
+        <div class="catalog_container">
+            <div class="catalog_header">
+                <h1 class="catalog_title">Premium Electronics</h1>
+                <p class="catalog_subtitle">Discover our curated collection of high-quality tech products</p>
+            </div>
+
+            <div class="catalog_laypot">
+                <aside class="sidebar">
+                    <div class="sidebar_header">
+                        <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
+                        <h2 class="sidebar_title">Filters</h2>
+                    </div>
+
+                    <div class="filter">
+                        <h3 class="filter_title">Rating</h3>
+                        <div class="filter_options">
+                            <label class="checkbox_label">
+                                <input type="checkbox" class="checkbox_input" value="5">
+                                <span class="checkbox_custom"></span>
+                                <span class="checkbox_text">5+ Stars</span>
+                            </label>
+                            <label class="checkbox_label">
+                                <input type="checkbox" class="checkbox_input" value="4">
+                                <span class="checkbox_custom"></span>
+                                <span class="checkbox_text">4+ Stars</span>
+                            </label>
+                            <label class="checkbox_label">
+                                <input type="checkbox" class="checkbox_input" value="4">
+                                <span class="checkbox_custom"></span>
+                                <span class="checkbox_text">3+ Stars</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <h3 class="filter_title">Price Range</h3>
+                        <div class="range-slider">
+                            <div class="range-slider_track"></div>
+                            <input type="range" min="0" max="3000" value="0" class="range-slider_input min">
+                            <input type="range" min="0" max="3000" value="3000" class="range-slider_input max">
+                        </div>
+                        <div class="range-slider_values">
+                            <span class="range-slider_val">$0</span>
+                            <span class="range-slider_val">$3000</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-clear" id="clear-filters">Clear All Filters</button>
+                </aside>
+
+                <section class="products">
+                    <div class="products_toolbar">
+                        <span class="products_count">6 products</span>
+
+                        <div class="products_sort">
+                            <label for="sort" class="products_sort-label">Sort by:</label>
+                            <div class="custom-select">
+                                <div class="custom-select_trigger">
+                                    <span class="custom-select_value">Name (A-Z)</span>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <div class="custom-select_options">
+                                    <span class="custom-select_option" data-value="name-asc">Name (A-Z)</span>
+                                    <span class="custom-select_option" data-value="name-desc">Name (Z-A)</span>
+                                    <span class="custom-select_option" data-value="price-asc">Price (Low to High)</span>
+                                    <span class="custom-select_option" data-value="price-desc">Price (High to Low)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="products_grid">
+                        <article class="product-card" data-price="129.99" data-rating="3.5">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1674303324806-7018a739ed11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibHVldG9vdGglMjBzcGVha2VyJTIwcG9ydGFibGV8ZW58MXx8fHwxNzcxMTE2NTg4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Portable Bluetooth Speaker" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Portable Bluetoth Speaker</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star-half" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                    </div>
+                                    <span class="rating-val">(3.5)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$129.99</span>
+                                    <span class="product-card_category">AUDIO</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="product-card" data-price="299.99" data-rating="5">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1760708368699-69cb9ed56f52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3aXJlbGVzcyUyMGhlYWRwaG9uZXMlMjBibGFja3xlbnwxfHx8fDE3NzExODE4OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Premium Wireless Headphones" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Premium Wireless Headphones</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                    </div>
+                                    <span class="rating-val">(5)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$299.99</span>
+                                    <span class="product-card_category">AUDIO</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-price="2499.99" data-rating="5">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1532272278764-53cd1fe53f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1lcmElMjBwaG90b2dyYXBoeSUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzExNDIxODN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Professional DSLR Camera" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Professional DSLR Camera</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                    </div>
+                                    <span class="rating-val">(5)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$2499.99</span>
+                                    <span class="product-card_category">PHOTOGRAPHY</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-price="1899.99" data-rating="4.5">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1673431738089-c4fc9c2e96a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBjb21wdXRlciUyMGRlc2slMjBzZXR1cHxlbnwxfHx8fDE3NzExODE4OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Professional Laptop Pro" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Professional Laptop Pro</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star-half" class="star fill"></i>
+                                    </div>
+                                    <span class="rating-val">(4.5)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$1899.99</span>
+                                    <span class="product-card_category">COMPUTERS</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-price="449.99" data-rating="4">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1665860455418-017fa50d29bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydHdhdGNoJTIwZml0bmVzcyUyMHRyYWNrZXJ8ZW58MXx8fHwxNzcxMTUyOTc0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Smart Fitness Watch Ultra" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Smart Fitness Watch Ultra</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star"></i>
+                                    </div>
+                                    <span class="rating-val">(4)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$449.99</span>
+                                    <span class="product-card_category">WEARABLES</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-price="799.99" data-rating="4.5">
+                            <div class="product-card_img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1740637977676-c8040b41dc7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWJsZXQlMjBkZXZpY2UlMjBzY3JlZW58ZW58MXx8fHwxNzcxMTEwNDQ2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                                    alt="Ultra-Thin Tablet Pro" class="product-card_img">
+                                <button class="btn-add-to-cart">Add to Cart</button>
+                            </div>
+                            <div class="product-card_info">
+                                <h3 class="product-card_title"><a href="#">Ultra-Thin Tablet Pro</a></h3>
+                                <div class="product-card_rating">
+                                    <div class="rating-stars">
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star" class="star fill"></i>
+                                        <i data-lucide="star-half" class="star fill"></i>
+                                    </div>
+                                    <span class="rating-val">(4.5)</span>
+                                </div>
+                                <div class="product-card_footer">
+                                    <span class="product-card_price">$799.99</span>
+                                    <span class="product-card_category">TABLETS</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
 
     <footer class="footer">
         <div class="footer_container">
             <div class="footer_grid">
-                
-                <!-- Колонка 1 -->
-                <div>
+                <div class="footer_col">
                     <a href="#" class="footer_logo">
                         <div class="footer_logo-icon">T</div>
                         <span class="footer_logo-text">TechStore</span>
                     </a>
                     <p class="footer_text">
-                        Your trusted destination for premium electronics and tech accessories. Quality products, competitive prices, exceptional service.
+                        Your trusted destination for premium electronics and tech accessories. Quality products,
+                        competitive prices, exceptional service.
                     </p>
                     <div class="footer_socials">
                         <a href="#" class="footer_social-link"><i data-lucide="facebook"></i></a>
@@ -69,8 +293,7 @@
                     </div>
                 </div>
 
-                <!-- Колонка 2 -->
-                <div>
+                <div class="footer_col">
                     <h3 class="footer_title">Quick Links</h3>
                     <ul class="footer_list">
                         <li><a href="#" class="footer_link">Shop All Products</a></li>
@@ -80,8 +303,7 @@
                     </ul>
                 </div>
 
-                <!-- Колонка 3 -->
-                <div>
+                <div class="footer_col">
                     <h3 class="footer_title">Customer Service</h3>
                     <ul class="footer_list">
                         <li><a href="#" class="footer_link">Shipping Information</a></li>
@@ -96,8 +318,7 @@
                     </div>
                 </div>
 
-                <!-- Колонка 4 -->
-                <div>
+                <div class="footer_col">
                     <h3 class="footer_title">Newsletter</h3>
                     <p class="footer_text">
                         Subscribe to get special offers, free giveaways, and updates.
@@ -120,8 +341,12 @@
         </div>
     </footer>
 
+    <script src="scripts/select.js"></script>
+
     <script>
         lucide.createIcons();
     </script>
+
 </body>
+
 </html>
