@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Название товара - Web Catalog</title>
+    <!-- Подключаем твой скомпилированный CSS -->
+    <link rel="stylesheet" href="scss/styles.css">
+</head>
+<body>
+
+    <!-- Шапка сайта (берем стили из твоего _header.scss) -->
+    <header class="header">
+        <div class="container">
+            <!-- Здесь твой логотип, навигация, корзина -->
+            <a href="index.html" class="header__logo">Logo</a>
+        </div>
+    </header>
+
+    <!-- Основной контент страницы -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Хлебные крошки (важно для SEO и навигации в каталоге) -->
+            <nav class="breadcrumbs" aria-label="breadcrumb">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
+                    <li class="breadcrumbs__item"><a href="#">Каталог</a></li>
+                    <li class="breadcrumbs__item"><a href="#">Категория</a></li>
+                    <li class="breadcrumbs__item breadcrumbs__item--active" aria-current="page">Название товара</li>
+                </ul>
+            </nav>
+
+            <!-- Карточка товара детальная -->
+            <article class="product-detail">
+                
+                <!-- Левая колонка: Галерея изображений -->
+                <div class="product-detail__gallery">
+                    <div class="product-detail__image-main">
+                        <img src="https://via.placeholder.com/600x600" alt="Главное фото товара">
+                    </div>
+                    <!-- Миниатюры -->
+                    <div class="product-detail__thumbnails">
+                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 1" class="product-detail__thumb product-detail__thumb--active">
+                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 2" class="product-detail__thumb">
+                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 3" class="product-detail__thumb">
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Информация о товаре -->
+                <div class="product-detail__info">
+                    <span class="product-detail__article">Артикул: 12345-67</span>
+                    <h1 class="product-detail__title">Название великолепного товара</h1>
+                    
+                    <div class="product-detail__price-wrap">
+                        <span class="product-detail__price">5 990 ₽</span>
+                        <span class="product-detail__old-price">7 500 ₽</span> <!-- Если есть скидка -->
+                    </div>
+
+                    <p class="product-detail__description">
+                        Краткое описание товара. Здесь рассказывается о главных преимуществах продукта, материалах и том, почему пользователь должен его купить.
+                    </p>
+
+                    <!-- Форма добавления в корзину -->
+                    <form class="product-detail__form" action="#" method="POST">
+                        
+                        <!-- Блок выбора опций. Здесь как раз пригодится твой select.js -->
+                        <div class="product-detail__options">
+                            <label for="size-select">Размер:</label>
+                            <div class="custom-select-wrapper">
+                                <select id="size-select" name="size" class="custom-select">
+                                    <option value="S">Small (S)</option>
+                                    <option value="M" selected>Medium (M)</option>
+                                    <option value="L">Large (L)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Выбор количества и кнопка -->
+                        <div class="product-detail__actions">
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-selector__btn minus">-</button>
+                                <input type="number" class="quantity-selector__input" value="1" min="1" max="99">
+                                <button type="button" class="quantity-selector__btn plus">+</button>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary product-detail__add-to-cart">
+                                Добавить в корзину
+                            </button>
+                            <button type="button" class="btn btn--icon product-detail__favorite" aria-label="В избранное">
+                                <!-- Иконка сердечка (SVG) -->
+                                ♥
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Табы или аккордеон для характеристик -->
+                    <div class="product-detail__details">
+                        <h3 class="product-detail__details-title">Характеристики</h3>
+                        <ul class="product-detail__features-list">
+                            <li><span>Материал:</span> 100% Хлопок</li>
+                            <li><span>Вес:</span> 300 г</li>
+                            <li><span>Страна:</span> Россия</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- Подвал (берем стили из твоего _footer.scss) -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Web Catalog. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Подключаем твой JS скрипт -->
+    <script src="scripts/select.js"></script>
+</body>
+</html>
