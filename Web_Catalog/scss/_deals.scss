@@ -1,0 +1,303 @@
+.deals {
+    &_container {
+        width: 100%;
+        max-width: 1280px;
+        padding: 0 32px;
+        margin: 0 auto;
+    }
+
+    &_hero {
+        text-align: left;
+        margin-bottom: 48px;
+        padding-top: 40px;
+
+        .link-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-bottom: 8px;
+
+            .icon-blue {
+                color: #155DFC;
+                width: 26px;
+                height: 26px;
+                stroke-width: 2px;
+                transition: transform 0.2s ease;
+            }
+        }
+    }
+
+    &_title {
+        font-size: 22px;
+        font-weight: 100;
+        color: #0A0A0A;
+        margin-top: 0;
+        letter-spacing: 0.1px;
+    }
+
+    &_subtitle {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #4A5565;
+    }
+
+    &_grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+    }
+
+    &_footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 48px 0 64px 0;
+        gap: 16px;
+    }
+
+    &_footer-text {
+        font-size: 16px;
+        color: #4A5565;
+        margin: 0;
+    }
+
+    &_footer-btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background: #155DFC;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: #114AC6;
+        }
+    }
+}
+
+.flash-sale {
+    background: linear-gradient(90deg, #2563eb 0%, #a855f7 100%);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 48px;
+    color: #ffffff;
+
+    &_content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+    }
+
+    &_info {
+        flex: 1;
+    }
+
+    &_title {
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0 0 15px 0;
+    }
+
+    &_description {
+        font-size: 14px;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    &_timer {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.125);
+        padding: 14px 18px;
+        border-radius: 8px;
+
+        &-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 20px;
+                height: 20px;
+                stroke: white;
+            }
+        }
+
+        .timer_label {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .timer_value {
+            font-size: 15px;
+            font-weight: 600;
+
+        }
+
+        .timer_unit {
+            font-size: 15px;
+            font-weight: 600;
+        }
+    }
+}
+
+.deal-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: visible;
+    transition: box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &:hover {
+        box-shadow: 0px 12px 20px -4px rgba(0, 0, 0, 0.15);
+
+        .deal-card_img {
+            transform: scale(1.05);
+        }
+    }
+
+    &_img-wrapper {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: #E2E8F0;
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+    }
+
+    &_img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    &_discount {
+        position: absolute;
+        top: -10px;
+        right: -8px;
+        background: #FF0000;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 30px;
+        font-size: 11px;
+        font-weight: 500;
+        z-index: 10;
+    }
+
+    &_info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        position: relative;
+    }
+
+    &_title {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 12px;
+        line-height: 1.4;
+
+        a {
+            text-decoration: none;
+            color: #0A0A0A;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #155DFC;
+            }
+        }
+    }
+
+    &_rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+
+        .rating-stars {
+            display: flex;
+            gap: 2px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+                fill: #D1D5DB;
+                stroke: transparent;
+            }
+
+            svg.fill {
+                fill: #FACC15;
+            }
+        }
+
+        .rating-val {
+            font-size: 14px;
+            color: #4A5565;
+        }
+    }
+
+    &_price-category {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &_price-current {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2563eb;
+    }
+
+    &_category {
+        font-size: 11.5px;
+        font-weight: 300;
+        color: #707074;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 1024px) {
+    .deals_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .deals_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flash-sale {
+        padding: 24px;
+    }
+
+    .flash-sale_content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .flash-sale_timer {
+        align-self: flex-start;
+    }
+
+    .deals_footer {
+        padding: 32px 0 48px 0;
+    }
+}
