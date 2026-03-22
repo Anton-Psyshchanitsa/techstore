@@ -527,7 +527,7 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
-  padding: 84px 32px 32px 102px;
+  padding: 44px 18px 32px 72px;
 }
 .footer_container {
   width: 100%;
@@ -583,9 +583,9 @@ body {
   gap: 12px;
 }
 .footer_social-link {
-  width: 32px;
-  height: 32px;
-  background-color: #F3F4F6;
+  width: 36px;
+  height: 36px;
+  background-color: #e2e4e8;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -594,6 +594,10 @@ body {
   text-decoration: none;
   transition: all 0.2s;
   font-size: 16px;
+}
+.footer_social-link svg {
+  width: 16px;
+  height: 16px;
 }
 .footer_social-link:hover {
   background-color: #155DFC;
@@ -1170,11 +1174,21 @@ body {
 }
 .flash-sale_info {
   flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.flash-sale_left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .flash-sale_title {
   font-size: 20px;
   font-weight: 400;
-  margin: 0 0 15px 0;
+  margin-bottom: 6px;
 }
 .flash-sale_description {
   font-size: 14px;
@@ -1305,7 +1319,7 @@ body {
   align-items: center;
 }
 .deal-card_price-current {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   color: #2563eb;
 }

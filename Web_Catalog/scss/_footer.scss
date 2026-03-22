@@ -4,7 +4,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
-  padding: 84px 32px 32px 102px;
+  padding: 44px 18px 32px 72px;
 
   &_container {
     width: 100%;
@@ -67,9 +67,9 @@
   }
 
   &_social-link {
-    width: 32px;
-    height: 32px;
-    background-color: #F3F4F6;
+    width: 36px;
+    height: 36px;
+    background-color: #e2e4e8;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -78,6 +78,11 @@
     text-decoration: none;
     transition: all 0.2s;
     font-size: 16px;
+
+     svg {
+            width: 16px;   
+            height: 16px;  
+        }
 
     &:hover {
       background-color: #155DFC;

@@ -1,8 +1,16 @@
-document.addEventListener('DOMContentLoaded', async () => {
+    document.addEventListener('DOMContentLoaded', async () => {
     const dealsGrid = document.querySelector('.deals_grid');
     if (!dealsGrid) return;
     
     const dealProducts = await API.getDealProducts();
+    
+    const orderedProducts = [];
+    const order = ['Premium Wireless Headphones', 'Professional Laptop Pro', 'Smart Fitness Watch Ultra', 'Professional DSLR Camera'];
+    
+    order.forEach(name => {
+        const product = dealProducts.find(p => p.name === name);
+        if (product) orderedProducts.push(product);
+    });
     
     function renderStars(rating) {
         const fullStars = Math.floor(rating);
@@ -25,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return stars;
     }
     
-    dealsGrid.innerHTML = dealProducts.map(product => `
+    dealsGrid.innerHTML = orderedProducts.map(product => `
         <article class="deal-card" data-id="${product.id}" data-price="${product.price}" data-rating="${product.rating}">
             <div class="deal-card_img-wrapper">
                 <img src="${product.images[0]}" alt="${product.name}" class="deal-card_img">
@@ -42,10 +50,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span class="rating-val">(${product.rating})</span>
                 </div>
                 <div class="deal-card_price-category">
-                    <div class="deal-card_price-current">$${product.discountPrice || product.price}</div>
-                    ${product.discountPrice ? `<div class="deal-card_price-old">$${product.price}</div>` : ''}
+                    <div class="deal-card_price-current">$${product.price}</div>
+                    <div class="deal-card_category">${product.categoryCode}</div>
                 </div>
-                <div class="deal-card_category">${product.categoryCode}</div>
             </div>
         </article>
     `).join('');

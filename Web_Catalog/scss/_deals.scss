@@ -101,12 +101,23 @@
 
     &_info {
         flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+    }
+
+    &_left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     &_title {
         font-size: 20px;
         font-weight: 400;
-        margin: 0 0 15px 0;
+        margin-bottom: 6px;
     }
 
     &_description {
@@ -143,7 +154,6 @@
         .timer_value {
             font-size: 15px;
             font-weight: 600;
-
         }
 
         .timer_unit {
@@ -260,7 +270,7 @@
     }
 
     &_price-current {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
         color: #2563eb;
     }
