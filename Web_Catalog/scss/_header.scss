@@ -45,11 +45,11 @@
 
     &-text {
       font-family: "Inter", sans-serif;
-      font-weight: 700;
+      font-weight: 300;
       font-size: 20px;
       line-height: 28px;
       letter-spacing: -0.45px;
-      color: #0A0A0A;
+      color: #364153;
     }
   }
 
@@ -61,16 +61,19 @@
   &_link {
     text-decoration: none;
     font-family: "Inter", sans-serif;
-    font-weight: 400;
+    font-weight: 200;
     font-size: 15px;
     line-height: 24px;
     letter-spacing: -0.31px;
     color: #364153;
     transition: color 0.2s;
 
-    &:hover,
-    &.active {
+    &:hover {
       color: #155DFC;
+    }
+    
+    &.active {
+      color: #364153;
     }
   }
 

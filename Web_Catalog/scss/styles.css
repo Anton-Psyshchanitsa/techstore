@@ -65,11 +65,11 @@ body {
 }
 .header_logo-text {
   font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 20px;
   line-height: 28px;
   letter-spacing: -0.45px;
-  color: #0A0A0A;
+  color: #364153;
 }
 .header_nav {
   display: flex;
@@ -78,15 +78,18 @@ body {
 .header_link {
   text-decoration: none;
   font-family: "Inter", sans-serif;
-  font-weight: 400;
+  font-weight: 200;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: -0.31px;
   color: #364153;
   transition: color 0.2s;
 }
-.header_link:hover, .header_link.active {
+.header_link:hover {
   color: #155DFC;
+}
+.header_link.active {
+  color: #364153;
 }
 .header_actions {
   display: flex;
@@ -255,17 +258,16 @@ body {
   position: absolute;
   width: 100%;
   height: 16px;
-  background: #FFFFFF;
+  background: #E5E7EB;
   border-radius: 6px;
 }
-.range-slider_track::after {
-  content: "";
+.range-slider_fill {
   position: absolute;
-  height: 100%;
+  height: 14px;
   background: #0A0A0A;
   border-radius: 6px;
-  left: 0;
-  right: 0;
+  left: 0%;
+  right: 0%;
 }
 .range-slider_input {
   position: absolute;
@@ -273,36 +275,51 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: none;
+  background: transparent;
   pointer-events: none;
+  z-index: 2;
 }
 .range-slider_input::-webkit-slider-thumb {
   -webkit-appearance: none;
           appearance: none;
   pointer-events: auto;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   background: #FFFFFF;
-  border: 2px solid #0A0A0A;
+  border: 1px solid #0A0A0A;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  position: relative;
 }
 .range-slider_input::-moz-range-thumb {
   -moz-appearance: none;
        appearance: none;
   pointer-events: auto;
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   background: #FFFFFF;
   border: 1px solid #0A0A0A;
   border-radius: 50%;
   cursor: pointer;
+}
+.range-slider_input::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+  border: none;
+}
+.range-slider_input::-moz-range-track {
+  height: 4px;
+  background: transparent;
+  border: none;
 }
 .range-slider_values {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   color: #4A5565;
+  margin-top: 8px;
 }
 
 .btn-clear {
@@ -1022,6 +1039,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 32px;
+  padding-bottom: 120px;
 }
 
 .category-card {
@@ -1029,6 +1047,7 @@ body {
   overflow: hidden;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s ease;
+  cursor: pointer;
 }
 .category-card:hover {
   box-shadow: 0px 12px 20px -4px rgba(0, 0, 0, 0.15);
