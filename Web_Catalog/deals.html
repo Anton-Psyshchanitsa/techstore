@@ -20,23 +20,23 @@
     <header class="header">
         <div class="header_container">
             <div class="header_wrapper">
-                <a href="#" class="header_logo">
+                <a href="index.html" class="header_logo">
                     <div class="header_logo-icon">T</div>
                     <span class="header_logo-text">TechStore</span>
                 </a>
 
                 <nav class="header_nav">
-                    <a href="#" class="header_link">Products</a>
-                    <a href="#" class="header_link">Categories</a>
-                    <a href="#" class="header_link active">Deals</a>
-                    <a href="#" class="header_link">About</a>
+                    <a href="index.html" class="header_link">Products</a>
+                    <a href="categories.html" class="header_link">Categories</a>
+                    <a href="deals.html" class="header_link active">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
                 </nav>
 
                 <div class="header_actions">
                     <button class="header_btn">
                         <i data-lucide="search" class="header_icon"></i>
                     </button>
-                    <button class="header_btn">
+                    <button class="header_btn cart-btn">
                         <i data-lucide="shopping-cart" class="header_icon"></i>
                         <span class="header_badge">0</span>
                     </button>
@@ -61,130 +61,24 @@
                     <div class="flash-sale_info">
                         <h2 class="flash-sale_title">Flash Sale Event</h2>
                         <p class="flash-sale_description">Save up to 30% on selected items</p>
-                    </div>
-                    <div class="flash-sale_timer">
-                        <div class="flash-sale_timer-icon">
-                            <i data-lucide="clock"></i>
+                        <div class="flash-sale_timer">
+                            <div class="flash-sale_timer-icon">
+                                <i data-lucide="clock"></i>
+                            </div>
+                            <span class="timer_label">Ends in</span>
+                            <span class="timer_value">2</span>
+                            <span class="timer_unit">days</span>
                         </div>
-                        <span class="timer_label">Ends in</span>
-                        <span class="timer_value">2</span>
-                        <span class="timer_unit">days</span>
                     </div>
                 </div>
             </div>
 
             <div class="deals_grid">
-                <article class="deal-card" data-price="299.99" data-rating="5">
-                    <div class="deal-card_img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1760708368699-69cb9ed56f52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3aXJlbGVzcyUyMGhlYWRwaG9uZXMlMjBibGFja3xlbnwxfHx8fDE3NzExODE4OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                            alt="Premium Wireless Headphones" class="deal-card_img">
-                        <div class="deal-card_discount">Save 20%</div>
-                    </div>
-                    <div class="deal-card_info">
-                        <h3 class="deal-card_title">
-                            <a href="#">Premium Wireless Headphones</a>
-                        </h3>
-                        <div class="deal-card_rating">
-                            <div class="rating-stars">
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                            </div>
-                            <span class="rating-val">(5)</span>
-                        </div>
-                        <div class="deal-card_price-category">
-                            <div class="deal-card_price-current">$299.99</div>
-                            <div class="deal-card_category">AUDIO</div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="deal-card" data-price="1899.99" data-rating="4.5">
-                    <div class="deal-card_img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1673431738089-c4fc9c2e96a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBjb21wdXRlciUyMGRlc2slMjBzZXR1cHxlbnwxfHx8fDE3NzExODE4OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                            alt="Professional Laptop Pro" class="deal-card_img">
-                        <div class="deal-card_discount">Save 20%</div>
-                    </div>
-                    <div class="deal-card_info">
-                        <h3 class="deal-card_title">
-                            <a href="#">Professional Laptop Pro</a>
-                        </h3>
-                        <div class="deal-card_rating">
-                            <div class="rating-stars">
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star-half" class="star fill"></i>
-                            </div>
-                            <span class="rating-val">(4.5)</span>
-                        </div>
-                        <div class="deal-card_price-category">
-                            <div class="deal-card_price-current">$1899.99</div>
-                            <div class="deal-card_category">COMPUTERS</div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="deal-card" data-price="449.99" data-rating="4">
-                    <div class="deal-card_img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1665860455418-017fa50d29bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydHdhdGNoJTIwZml0bmVzcyUyMHRyYWNrZXJ8ZW58MXx8fHwxNzcxMTUyOTc0fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                            alt="Smart Fitness Watch Ultra" class="deal-card_img">
-                        <div class="deal-card_discount">Save 20%</div>
-                    </div>
-                    <div class="deal-card_info">
-                        <h3 class="deal-card_title">
-                            <a href="#">Smart Fitness Watch Ultra</a>
-                        </h3>
-                        <div class="deal-card_rating">
-                            <div class="rating-stars">
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star"></i>
-                            </div>
-                            <span class="rating-val">(4)</span>
-                        </div>
-                        <div class="deal-card_price-category">
-                            <div class="deal-card_price-current">$449.99</div>
-                            <div class="deal-card_category">WEARABLES</div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="deal-card" data-price="2499.99" data-rating="5">
-                    <div class="deal-card_img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1532272278764-53cd1fe53f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1lcmElMjBwaG90b2dyYXBoeSUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzExNDIxODN8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                            alt="Professional DSLR Camera" class="deal-card_img">
-                        <div class="deal-card_discount">Save 20%</div>
-                    </div>
-                    <div class="deal-card_info">
-                        <h3 class="deal-card_title">
-                            <a href="#">Professional DSLR Camera</a>
-                        </h3>
-                        <div class="deal-card_rating">
-                            <div class="rating-stars">
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                                <i data-lucide="star" class="star fill"></i>
-                            </div>
-                            <span class="rating-val">(5)</span>
-                        </div>
-                        <div class="deal-card_price-category">
-                            <div class="deal-card_price-current">$2499.99</div>
-                            <div class="deal-card_category">PHOTOGRAPHY</div>
-                        </div>
-                    </div>
-                </article>
             </div>
+
             <div class="deals_footer">
                 <p class="deals_footer-text">Want to see more products?</p>
-                <a href="#" class="deals_footer-btn">Browse All Products</a>
+                <a href="index.html" class="deals_footer-btn">Browse All Products</a>
             </div>
         </div>
     </main>
@@ -193,7 +87,7 @@
         <div class="footer_container">
             <div class="footer_grid">
                 <div class="footer_col">
-                    <a href="#" class="footer_logo">
+                    <a href="index.html" class="footer_logo">
                         <div class="footer_logo-icon">T</div>
                         <span class="footer_logo-text">TechStore</span>
                     </a>
@@ -212,9 +106,9 @@
                 <div class="footer_col">
                     <h3 class="footer_title">Quick Links</h3>
                     <ul class="footer_list">
-                        <li><a href="#" class="footer_link">Shop All Products</a></li>
-                        <li><a href="#" class="footer_link">Special Deals</a></li>
-                        <li><a href="#" class="footer_link">About Us</a></li>
+                        <li><a href="index.html" class="footer_link">Shop All Products</a></li>
+                        <li><a href="deals.html" class="footer_link">Special Deals</a></li>
+                        <li><a href="about.html" class="footer_link">About Us</a></li>
                         <li><a href="#" class="footer_link">Contact Support</a></li>
                     </ul>
                 </div>
@@ -257,10 +151,9 @@
         </div>
     </footer>
 
-    <script>
-        lucide.createIcons();
-    </script>
-
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/deals.js"></script>
 </body>
 
 </html>
