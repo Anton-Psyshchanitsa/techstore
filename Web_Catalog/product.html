@@ -1,122 +1,236 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Название товара - Web Catalog</title>
-    <!-- Подключаем твой скомпилированный CSS -->
+    <title>TechStore - Product</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="scss/styles.css">
+
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
 </head>
+
 <body>
 
-    <!-- Шапка сайта (берем стили из твоего _header.scss) -->
     <header class="header">
-        <div class="container">
-            <!-- Здесь твой логотип, навигация, корзина -->
-            <a href="index.html" class="header__logo">Logo</a>
+        <div class="header_container">
+            <div class="header_wrapper">
+                <a href="index.html" class="header_logo">
+                    <div class="header_logo-icon">T</div>
+                    <span class="header_logo-text">TechStore</span>
+                </a>
+
+                <nav class="header_nav">
+                    <a href="index.html" class="header_link">Products</a>
+                    <a href="categories.html" class="header_link">Categories</a>
+                    <a href="deals.html" class="header_link">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
+                </nav>
+
+                <div class="header_actions">
+                    <button class="header_btn">
+                        <i data-lucide="search" class="header_icon"></i>
+                    </button>
+                    <button class="header_btn cart-btn">
+                        <i data-lucide="shopping-cart" class="header_icon"></i>
+                        <span class="header_badge">0</span>
+                    </button>
+                </div>
+
+            </div>
         </div>
     </header>
 
-    <!-- Основной контент страницы -->
     <main class="main">
-        <div class="container">
-            
-            <!-- Хлебные крошки (важно для SEO и навигации в каталоге) -->
-            <nav class="breadcrumbs" aria-label="breadcrumb">
-                <ul class="breadcrumbs__list">
-                    <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
-                    <li class="breadcrumbs__item"><a href="#">Каталог</a></li>
-                    <li class="breadcrumbs__item"><a href="#">Категория</a></li>
-                    <li class="breadcrumbs__item breadcrumbs__item--active" aria-current="page">Название товара</li>
-                </ul>
+        <div class="product-page">
+            <nav class="breadcrumbs">
+                <a href="index.html">Products</a>
+                <i data-lucide="chevron-right" class="breadcrumbs_icon"></i>
+                <span id="breadcrumb-category">Audio</span>
+                <i data-lucide="chevron-right" class="breadcrumbs_icon"></i>
+                <span id="breadcrumb-product">Portable Bluetooth Speaker</span>
             </nav>
 
-            <!-- Карточка товара детальная -->
-            <article class="product-detail">
-                
-                <!-- Левая колонка: Галерея изображений -->
-                <div class="product-detail__gallery">
-                    <div class="product-detail__image-main">
-                        <img src="https://via.placeholder.com/600x600" alt="Главное фото товара">
+            <div class="product-overview">
+                <div class="product-gallery">
+                    <div class="product-gallery_main">
+                        <img id="main-image" src="" alt="Product image">
+                        <button class="slider-arrow slider-arrow--prev" id="prev-image">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-arrow--next" id="next-image">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
                     </div>
-                    <!-- Миниатюры -->
-                    <div class="product-detail__thumbnails">
-                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 1" class="product-detail__thumb product-detail__thumb--active">
-                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 2" class="product-detail__thumb">
-                        <img src="https://via.placeholder.com/100x100" alt="Миниатюра 3" class="product-detail__thumb">
+                    <div class="product-gallery_thumbnails" id="thumbnails">
+                    </div>
+                    <div class="related-products">
+                        <h2 class="related-products_title">Related Products</h2>
+                        <div class="related-products_grid" id="related-products">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Правая колонка: Информация о товаре -->
-                <div class="product-detail__info">
-                    <span class="product-detail__article">Артикул: 12345-67</span>
-                    <h1 class="product-detail__title">Название великолепного товара</h1>
-                    
-                    <div class="product-detail__price-wrap">
-                        <span class="product-detail__price">5 990 ₽</span>
-                        <span class="product-detail__old-price">7 500 ₽</span> <!-- Если есть скидка -->
+                <div class="product-info">
+                    <h1 class="product-info_title" id="product-name">Portable Bluetooth Speaker</h1>
+
+                    <div class="product-info_rating-block">
+                        <div class="product-info_stars-row">
+                            <div class="product-info_stars" id="product-stars"></div>
+                            <span class="product-info_rating-value" id="product-rating-value">(3.5)</span>
+                        </div>
+                        <div class="product-info_reviews" id="product-reviews">Based on 327 reviews</div>
                     </div>
 
-                    <p class="product-detail__description">
-                        Краткое описание товара. Здесь рассказывается о главных преимуществах продукта, материалах и том, почему пользователь должен его купить.
-                    </p>
+                    <div class="product-info_price-block">
+                        <span class="product-info_price" id="product-price">$129.99</span>
+                        <span class="product-info_shipping">Free shipping</span>
+                    </div>
 
-                    <!-- Форма добавления в корзину -->
-                    <form class="product-detail__form" action="#" method="POST">
-                        
-                        <!-- Блок выбора опций. Здесь как раз пригодится твой select.js -->
-                        <div class="product-detail__options">
-                            <label for="size-select">Размер:</label>
-                            <div class="custom-select-wrapper">
-                                <select id="size-select" name="size" class="custom-select">
-                                    <option value="S">Small (S)</option>
-                                    <option value="M" selected>Medium (M)</option>
-                                    <option value="L">Large (L)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Выбор количества и кнопка -->
-                        <div class="product-detail__actions">
-                            <div class="quantity-selector">
-                                <button type="button" class="quantity-selector__btn minus">-</button>
-                                <input type="number" class="quantity-selector__input" value="1" min="1" max="99">
-                                <button type="button" class="quantity-selector__btn plus">+</button>
-                            </div>
-                            
-                            <button type="submit" class="btn btn--primary product-detail__add-to-cart">
-                                Добавить в корзину
-                            </button>
-                            <button type="button" class="btn btn--icon product-detail__favorite" aria-label="В избранное">
-                                <!-- Иконка сердечка (SVG) -->
-                                ♥
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Табы или аккордеон для характеристик -->
-                    <div class="product-detail__details">
-                        <h3 class="product-detail__details-title">Характеристики</h3>
-                        <ul class="product-detail__features-list">
-                            <li><span>Материал:</span> 100% Хлопок</li>
-                            <li><span>Вес:</span> 300 г</li>
-                            <li><span>Страна:</span> Россия</li>
+                    <div class="product-info_highlights">
+                        <h3>Key Highlights</h3>
+                        <ul id="product-features">
+                            <li>Output Power: 20W</li>
+                            <li>Battery Life: 15 hours</li>
+                            <li>Water Rating: IPX7</li>
                         </ul>
                     </div>
-                </div>
 
-            </article>
-        </div>
+                    <div class="product-info_description">
+                        <h3>Description</h3>
+                        <p id="product-description">Take your music anywhere with this powerful portable speaker.
+                            Delivers rich, immersive sound with deep bass. Waterproof design perfect for outdoor
+                            adventures and pool parties.</p>
+                    </div>
+
+                    <div class="product-info_quantity">
+                        <h4>Quantity</h4>
+                        <div class="qty-controls">
+                            <button class="qty-btn qty-minus">-</button>
+                            <input type="number" class="qty-input" value="1" min="1" max="99">
+                            <button class="qty-btn qty-plus">+</button>
+                        </div>
+                    </div>
+
+                    <button class="product-info_add-to-cart" id="add-to-cart">
+                        <i data-lucide="shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                    <div class="product-info_accordion">
+                        <div class="product-info_accordion-header" id="accordion-header">
+                            <span>Technical Specifications</span>
+                            <i data-lucide="chevron-down" class="accordion-icon"></i>
+                        </div>
+                        <div class="product-info_accordion-content" id="accordion-content">
+                            <div class="specs-table">
+                                <div class="specs-row">
+                                    <span class="specs-label">Output Power</span>
+                                    <span class="specs-value">20W</span>
+                                </div>
+                                <div class="specs-row">
+                                    <span class="specs-label">Battery Life</span>
+                                    <span class="specs-value">15 hours</span>
+                                </div>
+                                <div class="specs-row">
+                                    <span class="specs-label">Water Rating</span>
+                                    <span class="specs-value">IPX7</span>
+                                </div>
+                                <div class="specs-row">
+                                    <span class="specs-label">Bluetooth</span>
+                                    <span class="specs-value">5.2</span>
+                                </div>
+                                <div class="specs-row">
+                                    <span class="specs-label">Range</span>
+                                    <span class="specs-value">30 meters</span>
+                                </div>
+                                <div class="specs-row">
+                                    <span class="specs-label">Charging</span>
+                                    <span class="specs-value">USB-C</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
     </main>
 
-    <!-- Подвал (берем стили из твоего _footer.scss) -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Web Catalog. Все права защищены.</p>
+        <div class="footer_container">
+            <div class="footer_grid">
+                <div class="footer_col">
+                    <a href="index.html" class="footer_logo">
+                        <div class="footer_logo-icon">T</div>
+                        <span class="footer_logo-text">TechStore</span>
+                    </a>
+                    <p class="footer_text">
+                        Your trusted destination for premium electronics and tech accessories. Quality products,
+                        competitive prices, exceptional service.
+                    </p>
+                    <div class="footer_socials">
+                        <a href="#" class="footer_social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Quick Links</h3>
+                    <ul class="footer_list">
+                        <li><a href="index.html" class="footer_link">Shop All Products</a></li>
+                        <li><a href="deals.html" class="footer_link">Special Deals</a></li>
+                        <li><a href="about.html" class="footer_link">About Us</a></li>
+                        <li><a href="#" class="footer_link">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Customer Service</h3>
+                    <ul class="footer_list">
+                        <li><a href="#" class="footer_link">Shipping Information</a></li>
+                        <li><a href="#" class="footer_link">Returns & Exchanges</a></li>
+                        <li><a href="#" class="footer_link">FAQ</a></li>
+                        <li><a href="#" class="footer_link">Track Order</a></li>
+                    </ul>
+                    <div class="footer_contact">
+                        <span class="footer_label">Customer Support:</span>
+                        <span class="footer_phone">1-800-TECH-SHOP</span>
+                        <a href="mailto:support@techstore.com" class="footer_email">support@techstore.com</a>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Newsletter</h3>
+                    <p class="footer_text">
+                        Subscribe to get special offers, free giveaways, and updates.
+                    </p>
+                    <form class="footer_form">
+                        <input type="email" class="footer_input" placeholder="Enter your email">
+                        <button type="submit" class="footer_btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer_bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
+                <div class="footer_bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Подключаем твой JS скрипт -->
-    <script src="scripts/select.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/product.js"></script>
+
 </body>
+
 </html>

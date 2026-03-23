@@ -36,15 +36,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!productsGrid) return;
 
         productsGrid.innerHTML = products.map(product => `
+        <a href="product.html?id=${product.id}" class="product-card-link">
             <article class="product-card" data-id="${product.id}" data-price="${product.price}" data-rating="${product.rating}">
                 <div class="product-card_img-wrapper">
                     <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
-                    <button class="btn-add-to-cart">Add to Cart</button>
                 </div>
                 <div class="product-card_info">
-                    <h3 class="product-card_title">
-                        <a href="product.html?id=${product.id}">${product.name}</a>
-                    </h3>
+                    <h3 class="product-card_title">${product.name}</h3>
                     <div class="product-card_rating">
                         <div class="rating-stars">
                             ${renderStars(product.rating)}
@@ -57,7 +55,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
             </article>
-        `).join('');
+        </a>
+    `).join('');
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();

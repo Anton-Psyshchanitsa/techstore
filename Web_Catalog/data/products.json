@@ -10,16 +10,24 @@
       "category": "Audio",
       "categoryCode": "AUDIO",
       "rating": 3.5,
-      "reviews": 456,
-      "description": "Take your music anywhere with this portable Bluetooth speaker. Water-resistant, 12-hour battery, and powerful sound.",
+      "reviews": 327,
+      "description": "Take your music anywhere with this powerful portable speaker. Delivers rich, immersive sound with deep bass. Waterproof design perfect for outdoor adventures and pool parties.",
       "images": [
         "https://images.unsplash.com/photo-1674303324806-7018a739ed11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1589256469067-ea99122bbdc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1674303324806-7018a739ed11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1674303324806-7018a739ed11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": false,
-      "features": ["Water Resistant", "12h Battery", "Bluetooth 5.0", "Built-in Mic"]
+      "features": ["Output Power: 20W", "Battery Life: 15 hours", "Water Rating: IPX7"],
+      "specifications": [
+        "Output Power: 20W",
+        "Battery Life: 15 hours",
+        "Water Rating: IPX7",
+        "Bluetooth: 5.2",
+        "Range: 30 meters",
+        "Charging: USB-C"
+      ]
     },
     {
       "id": 2,
@@ -32,15 +40,23 @@
       "categoryCode": "AUDIO",
       "rating": 5,
       "reviews": 128,
-      "description": "Experience crystal-clear sound with our premium wireless headphones. Features active noise cancellation, 30-hour battery life, and ultra-comfortable ear cushions.",
+      "description": "Experience immersive audio with our premium wireless headphones. Featuring advanced noise cancellation, 40-hour battery life, and studio-quality sound. Perfect for music enthusiasts and professionals who demand the best audio experience.",
       "images": [
         "https://images.unsplash.com/photo-1760708368699-69cb9ed56f52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1760708368699-69cb9ed56f52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1760708368699-69cb9ed56f52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": true,
-      "features": ["Noise Cancellation", "30h Battery", "Bluetooth 5.0", "Touch Controls"]
+      "features": ["Battery Life: 40 hours", "Connectivity: Bluetooth 5.3", "Noise Cancellation: Active ANC"],
+      "specifications": [
+        "Battery Life: 40 hours",
+        "Connectivity: Bluetooth 5.3",
+        "Noise Cancellation: Active ANC",
+        "Driver Size: 40mm",
+        "Weight: 250g",
+        "Charging Time: 2 hours"
+      ]
     },
     {
       "id": 3,
@@ -53,15 +69,23 @@
       "categoryCode": "PHOTOGRAPHY",
       "rating": 5,
       "reviews": 67,
-      "description": "Capture stunning photos with this professional DSLR camera. Features 24.2MP sensor, 4K video, and advanced autofocus system.",
+      "description": "Capture stunning images with this professional-grade DSLR camera. Features a full-frame sensor, 4K video recording, and exceptional low-light performance. Perfect for serious photographers and videographers.",
       "images": [
         "https://images.unsplash.com/photo-1532272278764-53cd1fe53f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1532272278764-53cd1fe53f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1532272278764-53cd1fe53f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": true,
-      "features": ["24.2MP Sensor", "4K Video", "Advanced Autofocus", "WiFi Connectivity"]
+      "features": ["Sensor: 45MP Full-Frame", "Video: 4K 60fps", "ISO Range: 100-51200"],
+      "specifications": [
+        "Sensor: 45MP Full-Frame",
+        "Video: 4K 60fps",
+        "ISO Range: 100-51200",
+        "Autofocus Points: 693",
+        "Burst Speed: 10 fps",
+        "Display: 3.2\\\" Tilting Touchscreen"
+      ]
     },
     {
       "id": 4,
@@ -74,15 +98,23 @@
       "categoryCode": "COMPUTERS",
       "rating": 4.5,
       "reviews": 89,
-      "description": "Powerful laptop for professionals. Features Intel Core i7 processor, 16GB RAM, 512GB SSD, and stunning 14-inch Retina display.",
+      "description": "Powerful performance meets sleek design in this professional laptop. Equipped with the latest processor, stunning display, and all-day battery life. Ideal for creative professionals and power users.",
       "images": [
         "https://images.unsplash.com/photo-1673431738089-c4fc9c2e96a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1673431738089-c4fc9c2e96a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1673431738089-c4fc9c2e96a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": true,
-      "features": ["Intel Core i7", "16GB RAM", "512GB SSD", "14-inch Retina"]
+      "features": ["Processor: Intel Core i9", "RAM: 32GB DDR5", "Storage: 1TB SSD"],
+      "specifications": [
+        "Processor: Intel Core i9",
+        "RAM: 32GB DDR5",
+        "Storage: 1TB SSD",
+        "Display: 15.6\\\" 4K OLED",
+        "Graphics: NVIDIA RTX 4060",
+        "Battery: 12 hours"
+      ]
     },
     {
       "id": 5,
@@ -95,15 +127,23 @@
       "categoryCode": "WEARABLES",
       "rating": 4,
       "reviews": 234,
-      "description": "Track your fitness goals with precision. Features heart rate monitoring, GPS, sleep tracking, and 7-day battery life.",
+      "description": "Track your fitness goals with precision and style. Features advanced health monitoring, GPS tracking, and a vibrant always-on display. Water-resistant and built for active lifestyles.",
       "images": [
         "https://images.unsplash.com/photo-1665860455418-017fa50d29bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1665860455418-017fa50d29bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1665860455418-017fa50d29bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": true,
-      "features": ["Heart Rate Monitor", "GPS", "Sleep Tracking", "7-day Battery"]
+      "features": ["Display: 1.9\\\" AMOLED", "Battery Life: 7 days", "Water Resistance: 50m"],
+      "specifications": [
+        "Display: 1.9\\\" AMOLED",
+        "Battery Life: 7 days",
+        "Water Resistance: 50m",
+        "GPS: Built-in",
+        "Health Sensors: Heart Rate, SpO2, ECG",
+        "Compatibility: iOS & Android"
+      ]
     },
     {
       "id": 6,
@@ -116,15 +156,23 @@
       "categoryCode": "TABLETS",
       "rating": 4.5,
       "reviews": 123,
-      "description": "Sleek and powerful tablet for work and play. Features 11-inch Liquid Retina display, A14 Bionic chip, and all-day battery life.",
+      "description": "Experience productivity and entertainment on a stunning display. This ultra-thin tablet features powerful performance, all-day battery, and support for stylus input. Perfect for work and play.",
       "images": [
         "https://images.unsplash.com/photo-1740637977676-c8040b41dc7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-        "https://images.unsplash.com/photo-1561154464-82e9adf32764?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        "https://images.unsplash.com/photo-1740637977676-c8040b41dc7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "https://images.unsplash.com/photo-1740637977676-c8040b41dc7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
       ],
       "inStock": true,
       "isDeal": false,
-      "features": ["11-inch Display", "A14 Bionic", "All-day Battery", "Touch ID"]
+      "features": ["Display: 12.9\\\" Liquid Retina", "Processor: M2 Chip", "Storage: 256GB"],
+      "specifications": [
+        "Display: 12.9\\\" Liquid Retina",
+        "Processor: M2 Chip",
+        "Storage: 256GB",
+        "RAM: 8GB",
+        "Battery: 10 hours",
+        "Stylus Support: Yes"
+      ]
     }
   ],
   "categories": [

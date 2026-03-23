@@ -32,6 +32,10 @@ function clearCart() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+    
     updateCartBadge();
     
     document.addEventListener('click', async (e) => {
