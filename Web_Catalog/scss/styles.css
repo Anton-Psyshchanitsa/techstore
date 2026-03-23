@@ -7,7 +7,7 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #F9FAFB;
+  background-color: #ffffff;
   color: #0A0A0A;
   display: flex;
   flex-direction: column;
@@ -524,7 +524,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-top: 16px;
-  border-top: 1px solid #F3F4F6;
 }
 .product-card_price {
   font-size: 18px;
@@ -1922,4 +1921,16 @@ body {
   .about_contact-links {
     padding: 24px;
   }
+}
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-top: 0px;
+  padding: 0px 0px 0 0px;
+  background: #F9FAFB;
+  min-height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }/*# sourceMappingURL=styles.css.map */

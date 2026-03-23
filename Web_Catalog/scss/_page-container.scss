@@ -1,0 +1,12 @@
+.page-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-top: 0px;
+    padding: 0px 0px 0 0px;
+    background: #F9FAFB;
+    min-height: calc(100vh - 65px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}

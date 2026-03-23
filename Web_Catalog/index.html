@@ -47,82 +47,85 @@
     </header>
 
     <main class="main">
-        <div class="catalog_container">
-            <div class="catalog_header">
-                <h1 class="catalog_title">Premium Electronics</h1>
-                <p class="catalog_subtitle">Discover our curated collection of high-quality tech products</p>
-            </div>
+        <div class="page-container">
+            <div class="catalog_container">
+                <div class="catalog_header">
+                    <h1 class="catalog_title">Premium Electronics</h1>
+                    <p class="catalog_subtitle">Discover our curated collection of high-quality tech products</p>
+                </div>
 
-            <div class="catalog_laypot">
-                <aside class="sidebar">
-                    <div class="sidebar_header">
-                        <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
-                        <h2 class="sidebar_title">Filters</h2>
-                    </div>
-
-                    <div class="filter">
-                        <h3 class="filter_title">Rating</h3>
-                        <div class="filter_options">
-                            <label class="checkbox_label">
-                                <input type="checkbox" class="checkbox_input" value="5">
-                                <span class="checkbox_custom"></span>
-                                <span class="checkbox_text">5+ Stars</span>
-                            </label>
-                            <label class="checkbox_label">
-                                <input type="checkbox" class="checkbox_input" value="4">
-                                <span class="checkbox_custom"></span>
-                                <span class="checkbox_text">4+ Stars</span>
-                            </label>
-                            <label class="checkbox_label">
-                                <input type="checkbox" class="checkbox_input" value="3">
-                                <span class="checkbox_custom"></span>
-                                <span class="checkbox_text">3+ Stars</span>
-                            </label>
+                <div class="catalog_laypot">
+                    <aside class="sidebar">
+                        <div class="sidebar_header">
+                            <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
+                            <h2 class="sidebar_title">Filters</h2>
                         </div>
-                    </div>
 
-                    <div class="filter">
-                        <h3 class="filter_title">Price Range</h3>
-                        <div class="range-slider">
-                            <div class="range-slider_track"></div>
-                            <div class="range-slider_fill"></div>
-                            <input type="range" min="0" max="3000" value="0" class="range-slider_input min">
-                            <input type="range" min="0" max="3000" value="3000" class="range-slider_input max">
+                        <div class="filter">
+                            <h3 class="filter_title">Rating</h3>
+                            <div class="filter_options">
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="5">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">5+ Stars</span>
+                                </label>
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="4">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">4+ Stars</span>
+                                </label>
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="3">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">3+ Stars</span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="range-slider_values">
-                            <span class="range-slider_val">$0</span>
-                            <span class="range-slider_val">$3000</span>
+
+                        <div class="filter">
+                            <h3 class="filter_title">Price Range</h3>
+                            <div class="range-slider">
+                                <div class="range-slider_track"></div>
+                                <div class="range-slider_fill"></div>
+                                <input type="range" min="0" max="3000" value="0" class="range-slider_input min">
+                                <input type="range" min="0" max="3000" value="3000" class="range-slider_input max">
+                            </div>
+                            <div class="range-slider_values">
+                                <span class="range-slider_val">$0</span>
+                                <span class="range-slider_val">$3000</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <button class="btn-clear" id="clear-filters">Clear All Filters</button>
-                </aside>
+                        <button class="btn-clear" id="clear-filters">Clear All Filters</button>
+                    </aside>
 
-                <section class="products">
-                    <div class="products_toolbar">
-                        <span class="products_count">0 products</span>
+                    <section class="products">
+                        <div class="products_toolbar">
+                            <span class="products_count">0 products</span>
 
-                        <div class="products_sort">
-                            <label class="products_sort-label">Sort by:</label>
-                            <div class="custom-select">
-                                <div class="custom-select_trigger">
-                                    <span class="custom-select_value">Name (A-Z)</span>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
-                                </div>
-                                <div class="custom-select_options">
-                                    <span class="custom-select_option" data-value="name-asc">Name (A-Z)</span>
-                                    <span class="custom-select_option" data-value="name-desc">Name (Z-A)</span>
-                                    <span class="custom-select_option" data-value="price-asc">Price (Low to High)</span>
-                                    <span class="custom-select_option" data-value="price-desc">Price (High to
-                                        Low)</span>
+                            <div class="products_sort">
+                                <label class="products_sort-label">Sort by:</label>
+                                <div class="custom-select">
+                                    <div class="custom-select_trigger">
+                                        <span class="custom-select_value">Name (A-Z)</span>
+                                        <i data-lucide="chevron-down" class="select-icon"></i>
+                                    </div>
+                                    <div class="custom-select_options">
+                                        <span class="custom-select_option" data-value="name-asc">Name (A-Z)</span>
+                                        <span class="custom-select_option" data-value="name-desc">Name (Z-A)</span>
+                                        <span class="custom-select_option" data-value="price-asc">Price (Low to
+                                            High)</span>
+                                        <span class="custom-select_option" data-value="price-desc">Price (High to
+                                            Low)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="products_grid">
-                    </div>
-                </section>
+                        <div class="products_grid">
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
