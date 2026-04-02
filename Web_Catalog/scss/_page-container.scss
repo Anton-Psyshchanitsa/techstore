@@ -1,12 +1,20 @@
 .page-container {
+    --bg-color: #F9FAFB;
+    --max-w: 1280px;
+    --pad: 0px;
+    --m-top: 0px;
+    --m-bottom: 80px;
+    --gap-size: 32px;
+    --min-h: calc(100vh - 65px);
+
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    margin-top: 0px;
-    padding: 0px 0px 0 0px;
-    background: #F9FAFB;
-    min-height: calc(100vh - 65px);
+    max-width: var(--max-w);
+    margin: var(--m-top) auto var(--m-bottom) auto;
+    padding: var(--pad);
+    background: var(--bg-color);
+    min-height: var(--min-h);
+    
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: var(--gap-size);
 }

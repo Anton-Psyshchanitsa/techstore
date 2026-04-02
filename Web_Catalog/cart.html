@@ -4,19 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore - Premium Electronics</title>
-
+    <title>Shopping Cart - TechStore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="scss/styles.css">
-
     <script src="https://unpkg.com/lucide@0.344.0"></script>
 </head>
 
 <body>
-
     <header class="header">
         <div class="header_container">
             <div class="header_wrapper">
@@ -24,14 +20,12 @@
                     <div class="header_logo-icon">T</div>
                     <span class="header_logo-text">TechStore</span>
                 </a>
-
                 <nav class="header_nav">
-                    <a href="index.html" class="header_link active">Products</a>
+                    <a href="index.html" class="header_link">Products</a>
                     <a href="categories.html" class="header_link">Categories</a>
                     <a href="deals.html" class="header_link">Deals</a>
                     <a href="about.html" class="header_link">About</a>
                 </nav>
-
                 <div class="header_actions">
                     <button class="header_btn">
                         <i data-lucide="search" class="header_icon"></i>
@@ -41,91 +35,83 @@
                         <span class="header_badge">0</span>
                     </a>
                 </div>
-
             </div>
         </div>
     </header>
 
     <main class="main">
         <div class="page-container">
-            <div class="catalog_container">
-                <div class="catalog_header">
-                    <h1 class="catalog_title">Premium Electronics</h1>
-                    <p class="catalog_subtitle">Discover our curated collection of high-quality tech products</p>
+
+            <!-- Блок пустой корзины (БЕЗ заголовка Shopping Cart) -->
+            <div class="cart_empty" id="empty-state" style="display: none;">
+                <h2 class="cart_empty-title">Your Cart is Empty</h2>
+                <p class="cart_empty-text">Add some amazing products to get started!</p>
+                <a href="index.html" class="btn-continue-shopping">Continue shopping</a>
+            </div>
+
+            <!-- Сетка корзины (товары слева, сайдбар справа) -->
+            <div class="cart_layout" id="cart-layout">
+                <!-- Заголовок Shopping Cart только когда есть товары -->
+                <h1 class="cart_title" id="cart-title">Shopping Cart</h1>
+
+                <!-- Блок с товарами -->
+                <div class="cart_items" id="cart-items">
                 </div>
 
-                <div class="catalog_laypot">
-                    <aside class="sidebar">
-                        <div class="sidebar_header">
-                            <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
-                            <h2 class="sidebar_title">Filters</h2>
+                <!-- Сайдбар справа -->
+                <aside class="cart_sidebar">
+                    <div class="cart-summary_card">
+                        <h2 class="cart-summary_title">Order Summary</h2>
+                        <div class="cart-summary_row">
+                            <span class="cart-summary_label">Subtotal</span>
+                            <span class="cart-summary_value" id="summary-subtotal">$0.00</span>
+                        </div>
+                        <div class="cart-summary_row">
+                            <span class="cart-summary_label">Tax (8%)</span>
+                            <span class="cart-summary_value" id="summary-tax">$0.00</span>
+                        </div>
+                        <div class="cart-summary_divider"></div>
+                        <div class="cart-summary_row total">
+                            <span class="cart-summary_label">Total</span>
+                            <span class="cart-summary_value total-price" id="summary-total">$0.00</span>
                         </div>
 
-                        <div class="filter">
-                            <h3 class="filter_title">Rating</h3>
-                            <div class="filter_options">
-                                <label class="checkbox_label">
-                                    <input type="checkbox" class="checkbox_input" value="5">
-                                    <span class="checkbox_custom"></span>
-                                    <span class="checkbox_text">5+ Stars</span>
-                                </label>
-                                <label class="checkbox_label">
-                                    <input type="checkbox" class="checkbox_input" value="4">
-                                    <span class="checkbox_custom"></span>
-                                    <span class="checkbox_text">4+ Stars</span>
-                                </label>
-                                <label class="checkbox_label">
-                                    <input type="checkbox" class="checkbox_input" value="3">
-                                    <span class="checkbox_custom"></span>
-                                    <span class="checkbox_text">3+ Stars</span>
-                                </label>
+                        <div class="cart-promo">
+                            <label class="cart-promo_label">Promo Code</label>
+                            <div class="cart-promo_input-group">
+                                <input type="text" placeholder="Enter code" class="cart-promo_input">
+                                <button class="cart-promo_btn">Apply</button>
                             </div>
+                            <span class="cart-promo_hint">Try code "SAVE10" for 10% off</span>
                         </div>
 
-                        <div class="filter">
-                            <h3 class="filter_title">Price Range</h3>
-                            <div class="range-slider">
-                                <div class="range-slider_track"></div>
-                                <div class="range-slider_fill"></div>
-                                <input type="range" min="0" max="3000" value="0" class="range-slider_input min">
-                                <input type="range" min="0" max="3000" value="3000" class="range-slider_input max">
-                            </div>
-                            <div class="range-slider_values">
-                                <span class="range-slider_val">$0</span>
-                                <span class="range-slider_val">$3000</span>
-                            </div>
+                        <button class="btn-checkout">Proceed to Checkout</button>
+                    </div>
+
+                    <div class="cart-shipping_card">
+                        <div class="cart-shipping_header">
+                            <i data-lucide="truck"></i>
+                            <h3>Shipping Information</h3>
                         </div>
-
-                        <button class="btn-clear" id="clear-filters">Clear All Filters</button>
-                    </aside>
-
-                    <section class="products">
-                        <div class="products_toolbar">
-                            <span class="products_count">0 products</span>
-
-                            <div class="products_sort">
-                                <label class="products_sort-label">Sort by:</label>
-                                <div class="custom-select">
-                                    <div class="custom-select_trigger">
-                                        <span class="custom-select_value">Name (A-Z)</span>
-                                        <i data-lucide="chevron-down" class="select-icon"></i>
-                                    </div>
-                                    <div class="custom-select_options">
-                                        <span class="custom-select_option" data-value="name-asc">Name (A-Z)</span>
-                                        <span class="custom-select_option" data-value="name-desc">Name (Z-A)</span>
-                                        <span class="custom-select_option" data-value="price-asc">Price (Low to
-                                            High)</span>
-                                        <span class="custom-select_option" data-value="price-desc">Price (High to
-                                            Low)</span>
-                                    </div>
+                        <div class="cart-shipping_content">
+                            <div class="shipping-info_item">
+                                <i data-lucide="map-pin" class="small-icon"></i>
+                                <div class="shipping-info_text">
+                                    <strong>Delivery Address</strong>
+                                    <p>123 Tech Street<br>San Francisco, CA 94105</p>
+                                </div>
+                            </div>
+                            <div class="shipping-info_divider"></div>
+                            <div class="shipping-info_item no-icon">
+                                <div class="shipping-info_text">
+                                    <strong>Estimated Delivery</strong>
+                                    <p>3-5 business days</p>
+                                    <span class="shipping-free">Free shipping on orders over $50</span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="products_grid">
-                        </div>
-                    </section>
-                </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </main>
@@ -201,10 +187,7 @@
 
     <script src="scripts/api.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="scripts/filters.js"></script>
-    <script src="scripts/select.js"></script>
-
+    <script src="scripts/cart.js"></script>
 </body>
 
 </html>
