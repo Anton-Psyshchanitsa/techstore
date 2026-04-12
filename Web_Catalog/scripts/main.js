@@ -46,11 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productId = parseInt(card.dataset.id);
                 if (productId) {
                     addToCart(productId);
-                    const originalText = btn.textContent;
-                    btn.textContent = 'Added!';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                    }, 1000);
                 }
             }
         }

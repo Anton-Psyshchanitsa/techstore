@@ -42,29 +42,28 @@
     <main class="main">
         <div class="page-container">
 
-            <!-- Блок пустой корзины (БЕЗ заголовка Shopping Cart) -->
             <div class="cart_empty" id="empty-state" style="display: none;">
                 <h2 class="cart_empty-title">Your Cart is Empty</h2>
                 <p class="cart_empty-text">Add some amazing products to get started!</p>
                 <a href="index.html" class="btn-continue-shopping">Continue shopping</a>
             </div>
 
-            <!-- Сетка корзины (товары слева, сайдбар справа) -->
             <div class="cart_layout" id="cart-layout">
-                <!-- Заголовок Shopping Cart только когда есть товары -->
                 <h1 class="cart_title" id="cart-title">Shopping Cart</h1>
 
-                <!-- Блок с товарами -->
                 <div class="cart_items" id="cart-items">
                 </div>
 
-                <!-- Сайдбар справа -->
                 <aside class="cart_sidebar">
                     <div class="cart-summary_card">
                         <h2 class="cart-summary_title">Order Summary</h2>
                         <div class="cart-summary_row">
                             <span class="cart-summary_label">Subtotal</span>
                             <span class="cart-summary_value" id="summary-subtotal">$0.00</span>
+                        </div>
+                        <div class="cart-summary_row" id="discount-row" style="display: none;">
+                            <span class="cart-summary_label">Discount (SAVE10)</span>
+                            <span class="cart-summary_value" id="summary-discount" style="color: #22C55E;">-$0.00</span>
                         </div>
                         <div class="cart-summary_row">
                             <span class="cart-summary_label">Tax (8%)</span>

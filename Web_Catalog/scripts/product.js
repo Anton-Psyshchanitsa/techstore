@@ -174,11 +174,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         addToCart(product.id, quantity);
 
         const btn = document.getElementById('add-to-cart');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i data-lucide="check"></i> Added!';
         lucide.createIcons();
         setTimeout(() => {
-            btn.innerHTML = originalText;
             lucide.createIcons();
         }, 1500);
     });
