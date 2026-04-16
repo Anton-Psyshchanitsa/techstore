@@ -3,6 +3,14 @@
     width: 100%;
     max-width: 1280px;
     padding: 32px;
+
+    @media (max-width: 1024px) {
+      padding: 24px;
+    }
+
+    @media (max-width: 630px) {
+      padding: 16px;
+    }
   }
 
   &_header {
@@ -14,6 +22,7 @@
     font-weight: 100;
     color: #0A0A0A;
     margin-bottom: 26px;
+    margin-top: 20px;
   }
 
   &_subtitle {
@@ -25,9 +34,20 @@
   &_laypot {
     display: grid;
     grid-template-columns: 256px 1fr;
-    grid-template-areas: "toolbar toolbar" "sidebar products";
+     grid-template-areas:
+      "toolbar toolbar"
+      "sidebar products";
+      
     column-gap: 32px;
     row-gap: 24px;
     align-items: start;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "toolbar"
+        "products";
+      column-gap: 0;
+    }
   }
 }

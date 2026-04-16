@@ -1,26 +1,81 @@
 .products {
   display: contents;
 
+  &_filters-btn {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #D1D5DC;
+    background: #FFFFFF;
+    color: #0A0A0A;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    grid-area: filters;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 1024px) {
+      display: inline-flex;
+    }
+  }
+
   &_toolbar {
     grid-area: toolbar;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 1024px) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 630px) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "filters count"
+        "sort sort";
+    }
   }
 
   &_count {
     font-size: 14px;
     color: #4A5565;
+
+    @media (max-width: 630px) {
+      grid-area: count;
+      justify-self: start;
+    }
   }
 
   &_sort {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
+
+    @media (max-width: 1024px) {
+      margin-left: auto;
+    }
+
+    @media (max-width: 630px) {
+      margin-left: 0;
+      width: 100%;
+      grid-area: sort;
+    }
 
     &-label {
       font-size: 14px;
       color: #4A5565;
+      white-space: nowrap;
     }
   }
 
@@ -29,9 +84,20 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-  }
 
-  .custom-select {
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 630px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+.custom-select {
   position: relative;
   width: 220px;
 }
@@ -72,7 +138,6 @@
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 999;
-
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -99,5 +164,4 @@
 .custom-select_option:hover {
   background-color: #F9FAFB;
   color: #155DFC;
-}
 }

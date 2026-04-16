@@ -183,4 +183,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     initPriceSlider();
 
     window.renderProducts = renderProducts;
+
+    const openFiltersBtn = document.getElementById('open-filters');
+    const closeFiltersBtn = document.getElementById('close-filters');
+    const filtersSidebar = document.getElementById('filters-sidebar');
+    const filtersOverlay = document.getElementById('filters-overlay');
+
+    function openFilters() {
+        filtersSidebar?.classList.add('open');
+        filtersOverlay?.classList.add('open');
+    }
+
+    function closeFilters() {
+        filtersSidebar?.classList.remove('open');
+        filtersOverlay?.classList.remove('open');
+    }
+
+    openFiltersBtn?.addEventListener('click', openFilters);
+    closeFiltersBtn?.addEventListener('click', closeFilters);
+    filtersOverlay?.addEventListener('click', closeFilters);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeFilters();
+    });
 });

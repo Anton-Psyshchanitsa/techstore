@@ -40,6 +40,9 @@
                         <i data-lucide="shopping-cart" class="header_icon"></i>
                         <span class="header_badge">0</span>
                     </a>
+                    <button class="header_burger" id="burger-btn">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </div>
 
             </div>
@@ -55,7 +58,11 @@
                 </div>
 
                 <div class="catalog_laypot">
-                    <aside class="sidebar">
+                    <div class="filters-overlay" id="filters-overlay"></div>
+                    <aside class="sidebar" id="filters-sidebar">
+                        <button class="sidebar_close" id="close-filters" type="button">
+                            <i data-lucide="x"></i>
+                        </button>
                         <div class="sidebar_header">
                             <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
                             <h2 class="sidebar_title">Filters</h2>
@@ -101,6 +108,10 @@
 
                     <section class="products">
                         <div class="products_toolbar">
+                            <button class="products_filters-btn" id="open-filters" type="button">
+                                <i data-lucide="sliders-horizontal"></i>
+                                Filters
+                            </button>
                             <span class="products_count">0 products</span>
 
                             <div class="products_sort">

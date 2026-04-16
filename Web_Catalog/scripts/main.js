@@ -11,13 +11,13 @@ function updateCartBadge() {
 function addToCart(productId, quantity = 1) {
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const existingItem = cart.find(item => item.id === productId);
-    
+
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
         cart.push({ id: productId, quantity });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartBadge();
 }
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
     updateCartBadge();
-    
+
     document.addEventListener('click', async (e) => {
         const btn = e.target.closest('.btn-add-to-cart');
         if (btn) {
@@ -50,4 +50,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    
+    const burgerBtn = document.getElementById('burger-btn');
+    const headerNav = document.querySelector('.header_nav');
+    const header = document.querySelector('.header');
+
+    if (burgerBtn && headerNav && header) {
+        burgerBtn.addEventListener('click', () => {
+            const isOpen = headerNav.classList.contains('open');
+            
+            if (!isOpen) {
+                headerNav.classList.add('open');
+                const navHeight = headerNav.scrollHeight;
+                header.style.paddingBottom = (navHeight + 0) + 'px';
+            } else {
+                headerNav.classList.remove('open');
+                header.style.paddingBottom = '0px';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerBtn.contains(e.target) && !headerNav.contains(e.target)) {
+                if (headerNav.classList.contains('open')) {
+                    headerNav.classList.remove('open');
+                    header.style.paddingBottom = '0px';
+                }
+            }
+        });
+    }
 });
