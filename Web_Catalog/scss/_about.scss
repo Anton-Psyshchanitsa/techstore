@@ -297,10 +297,6 @@
 }
 
 @media (max-width: 1024px) {
-    .about_values {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .about_contact {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -343,5 +339,26 @@
     .about_contact-info,
     .about_contact-links {
         padding: 24px;
+    }
+
+      .about_contact-grid {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+        column-gap: 0;
+    }
+
+    .contact-section-call,
+    .contact-section-hours {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .contact-section-visit {
+        margin-top: 0;
+    }
+
+    .about_values {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
