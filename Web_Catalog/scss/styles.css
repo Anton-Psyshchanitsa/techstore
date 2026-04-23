@@ -539,8 +539,30 @@ body {
 .product-card-link:hover .product-card_img {
   transform: scale(1.05);
 }
+.product-card-link:hover {
+  text-decoration: none;
+}
+.product-card-link:hover .product-card_title {
+  color: #155dfc;
+}
+
+.product-card_img-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card_title-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.product-card_title-link:hover .product-card_title {
+  color: #155DFC;
+}
 
 .product-card {
+  text-decoration: none;
   background: #FFFFFF;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -552,12 +574,16 @@ body {
   cursor: pointer;
   height: 100%;
 }
+.product-card:hover {
+  box-shadow: 0px 12px 20px -4px rgba(0, 0, 0, 0.15);
+}
 .product-card_img-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
   background: #E2E8F0;
   overflow: hidden;
+  border-radius: 12px 12px 0 0;
 }
 .product-card_img {
   width: 100%;
@@ -569,6 +595,7 @@ body {
 .product-card_info {
   padding: 20px;
   display: flex;
+  text-decoration: none;
   flex-direction: column;
   flex: 1;
 }
@@ -580,6 +607,7 @@ body {
   font-family: "Inter", sans-serif;
   color: #0A0A0A;
   transition: color 0.2s ease;
+  text-decoration: none; /* ← ДОБАВЛЕНО */
 }
 .product-card_rating {
   display: flex;
@@ -1648,7 +1676,7 @@ body {
     margin-top: 28px;
   }
 }
-@media (max-width: 630px) {
+@media (max-width: 768px) {
   .categories_grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -2425,8 +2453,8 @@ body {
   align-items: flex-start;
 }
 .cart-item_img {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border-radius: 8px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -2524,13 +2552,15 @@ body {
   color: #EF4444;
 }
 .cart-item_prices {
+  gap: 10px;
   text-align: right;
 }
 .cart-item_price-total {
   font-size: 18px;
   font-weight: 700;
   color: #155DFC;
-  margin-top: 64px;
+  margin-top: 68px;
+  margin-bottom: 6px;
 }
 .cart-item_price-each {
   font-size: 12px;
@@ -2751,8 +2781,7 @@ body {
   }
   .cart-item_img {
     width: 100%;
-    height: auto;
-    max-height: 220px;
+    max-height: 240px;
   }
   .cart-item_content {
     display: grid;

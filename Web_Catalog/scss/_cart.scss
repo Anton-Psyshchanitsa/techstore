@@ -95,8 +95,8 @@
     align-items: flex-start;
 
     &_img {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
         border-radius: 8px;
         object-fit: cover;
         background: #F3F4F6;
@@ -207,6 +207,7 @@
     }
 
     &_prices {
+        gap: 10px;
         text-align: right;
     }
 
@@ -214,7 +215,8 @@
         font-size: 18px;
         font-weight: 700;
         color: #155DFC;
-        margin-top: 64px;
+        margin-top: 68px;
+        margin-bottom: 6px;
     }
 
     &_price-each {
@@ -471,8 +473,7 @@
 
     .cart-item_img {
         width: 100%;
-        height: auto;
-        max-height: 220px;
+        max-height: 240px;
     }
 
     .cart-item_content {

@@ -32,17 +32,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         return stars;
     }
 
-    function renderProducts(products) {
+    window.renderProducts = function (products) {
         if (!productsGrid) return;
 
         productsGrid.innerHTML = products.map(product => `
-        <a href="product.html?id=${product.id}" class="product-card-link">
-            <article class="product-card" data-id="${product.id}" data-price="${product.price}" data-rating="${product.rating}">
-                <div class="product-card_img-wrapper">
-                    <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
-                </div>
+            <div class="product-card" data-id="${product.id}">
+                <a href="product.html?id=${product.id}" class="product-card_img-link">
+                    <div class="product-card_img-wrapper">
+                        <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
+                    </div>
+                </a>
                 <div class="product-card_info">
-                    <h3 class="product-card_title">${product.name}</h3>
+                    <a href="product.html?id=${product.id}" class="product-card_title-link">
+                        <h3 class="product-card_title">${product.name}</h3>
+                    </a>
                     <div class="product-card_rating">
                         <div class="rating-stars">
                             ${renderStars(product.rating)}
@@ -51,12 +54,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <div class="product-card_footer">
                         <span class="product-card_price">$${product.price}</span>
-                        <span class="product-card_category">${product.categoryCode}</span>
+                        <span class="product-card_category">${product.categoryCode || product.category}</span>
                     </div>
+                    <button class="btn-add-to-cart" type="button">Add to Cart</button>
                 </div>
-            </article>
-        </a>
-    `).join('');
+            </div>
+        `).join('');
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (productsCount) {
             productsCount.textContent = `${products.length} products`;
         }
-    }
+    };
 
     function applyFilters() {
         let filtered = [...allProducts];
@@ -87,8 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         filtered = filtered.filter(product => product.price >= minPrice && product.price <= maxPrice);
 
         currentFilteredProducts = filtered;
-        renderProducts(filtered);
-
+        window.renderProducts(filtered);
         window.currentProducts = filtered;
     }
 
@@ -101,13 +103,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         function updateFill() {
             if (!trackFill) return;
-
             const currentMin = parseFloat(priceMinInput.value);
             const currentMax = parseFloat(priceMaxInput.value);
-
             const leftPercent = ((currentMin - minVal) / (maxVal - minVal)) * 100;
             const rightPercent = ((maxVal - currentMax) / (maxVal - minVal)) * 100;
-
             trackFill.style.left = leftPercent + '%';
             trackFill.style.right = rightPercent + '%';
         }
@@ -115,15 +114,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         function updatePriceValues() {
             const currentMin = parseFloat(priceMinInput.value);
             const currentMax = parseFloat(priceMaxInput.value);
-
             if (priceMinValue) priceMinValue.textContent = `$${currentMin}`;
             if (priceMaxValue) priceMaxValue.textContent = `$${currentMax}`;
-
-            if (currentMin > currentMax) {
-                priceMinInput.value = currentMax;
-                if (priceMinValue) priceMinValue.textContent = `$${currentMax}`;
-            }
-
+            if (currentMin > currentMax) priceMinInput.value = currentMax;
             updateFill();
         }
 
@@ -148,20 +141,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     ratingCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            applyFilters();
-        });
+        checkbox.addEventListener('change', applyFilters);
     });
 
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
-            ratingCheckboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
-
+            ratingCheckboxes.forEach(checkbox => checkbox.checked = false);
             if (priceMinInput) priceMinInput.value = 0;
             if (priceMaxInput) priceMaxInput.value = 3000;
-
             if (priceMinValue) priceMinValue.textContent = '$0';
             if (priceMaxValue) priceMaxValue.textContent = '$3000';
 
@@ -170,7 +157,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trackFill.style.left = '0%';
                 trackFill.style.right = '0%';
             }
-
             applyFilters();
         });
     }
@@ -179,10 +165,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentFilteredProducts = [...allProducts];
     window.currentProducts = allProducts;
 
-    renderProducts(allProducts);
+    window.renderProducts(allProducts);
     initPriceSlider();
-
-    window.renderProducts = renderProducts;
 
     const openFiltersBtn = document.getElementById('open-filters');
     const closeFiltersBtn = document.getElementById('close-filters');

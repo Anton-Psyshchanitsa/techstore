@@ -20,23 +20,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         const promoBtn = e.target.closest('.cart-promo_btn');
         
         if (promoBtn) {
-            e.preventDefault(); 
+            e.preventDefault();
             
             const promoInput = document.querySelector('.cart-promo_input');
             const promoMessage = document.querySelector('.cart-promo_hint');
             
             if (!promoInput || !promoMessage) return;
 
-            const code = promoInput.value.trim().toUpperCase(); 
+            const code = promoInput.value.trim();
             
             if (code === 'SAVE10') {
                 isPromoApplied = true;
                 promoMessage.textContent = 'Promo code applied successfully!';
-                promoMessage.style.color = '#22C55E'; 
+                promoMessage.style.color = '#22C55E';
             } else if (code === '') {
                 isPromoApplied = false;
                 promoMessage.textContent = 'Try code "SAVE10" for 10% off';
-                promoMessage.style.color = '#6B7280'; 
+                promoMessage.style.color = '#6B7280';
             } else {
                 isPromoApplied = false;
                 promoMessage.textContent = 'Wrong Promo code!';
@@ -106,20 +106,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         cartItemsContainer.innerHTML = html;
 
+        const taxRate = 0.08;
+        const tax = subtotal * taxRate;
+        const totalBeforeDiscount = subtotal + tax;
+
         let discount = 0;
-        
+
         if (isPromoApplied) {
-            discount = subtotal * 0.10; 
+            discount = totalBeforeDiscount * 0.10;
             if (discountRow) discountRow.style.display = 'flex';
             if (discountEl) discountEl.textContent = `-$${discount.toFixed(2)}`;
         } else {
             if (discountRow) discountRow.style.display = 'none';
         }
 
-        const discountedSubtotal = subtotal - discount; 
-        const taxRate = 0.08; 
-        const tax = discountedSubtotal * taxRate; 
-        const total = discountedSubtotal + tax;
+        const total = totalBeforeDiscount - discount;
 
         if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
