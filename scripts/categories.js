@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const categoriesGrid = document.querySelector('.categories_grid');
     if (!categoriesGrid) return;
-    
+
     const categories = await API.getCategories();
-    
+
     categoriesGrid.innerHTML = categories.map(category => `
         <div class="category-card" data-category="${category.code}">
             <div class="category-card_image-wrapper">
@@ -17,15 +17,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         </div>
     `).join('');
-    
+
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
     const categoryCards = document.querySelectorAll('.category-card');
     categoryCards.forEach(card => {
         card.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            const code = card.dataset.category;
+            window.location.href = code ? `index.html?category=${encodeURIComponent(code)}` : 'index.html';
         });
     });
 });

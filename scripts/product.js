@@ -8,30 +8,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!product) return;
 
     let currentImageIndex = 0;
-    let currentImages = product.images || [];
+    const currentImages = product.images || [];
 
     function renderStars(rating) {
-        const fullStars = Math.floor(rating);
-        const hasHalf = rating % 1 !== 0;
-        let stars = '';
-
-        for (let i = 0; i < fullStars; i++) {
-            stars += '<i data-lucide="star" class="star fill"></i>';
-        }
-
-        if (hasHalf) {
-            stars += '<i data-lucide="star-half" class="star fill"></i>';
-        }
-
-        const emptyStars = 5 - Math.ceil(rating);
-        for (let i = 0; i < emptyStars; i++) {
-            stars += '<i data-lucide="star" class="star"></i>';
-        }
-
-        return stars;
-    }
-
-    function renderStarsSmall(rating) {
         const fullStars = Math.floor(rating);
         const hasHalf = rating % 1 !== 0;
         let stars = '';
@@ -72,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.querySelectorAll('.product-gallery_thumb').forEach(thumb => {
             thumb.addEventListener('click', () => {
-                currentImageIndex = parseInt(thumb.dataset.index);
+                currentImageIndex = parseInt(thumb.dataset.index, 10);
                 updateMainImage();
                 renderThumbnails();
             });
@@ -116,13 +95,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const specsContainer = document.querySelector('.specs-table');
     if (specsContainer && product.specifications) {
         specsContainer.innerHTML = product.specifications.map(spec => {
-            const [label, value] = spec.split(': ');
+            const [label, value] = String(spec).split(': ');
             return `
-            <div class="specs-row">
-                <span class="specs-label">${label}</span>
-                <span class="specs-value">${value}</span>
-            </div>
-        `;
+                <div class="specs-row">
+                    <span class="specs-label">${label || ''}</span>
+                    <span class="specs-value">${value || ''}</span>
+                </div>
+            `;
         }).join('');
     }
 
@@ -153,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (qtyMinus) {
         qtyMinus.addEventListener('click', () => {
-            let val = parseInt(qtyInput.value);
+            const val = parseInt(qtyInput.value, 10) || 1;
             if (val > 1) {
                 qtyInput.value = val - 1;
             }
@@ -162,22 +141,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (qtyPlus) {
         qtyPlus.addEventListener('click', () => {
-            let val = parseInt(qtyInput.value);
+            const val = parseInt(qtyInput.value, 10) || 1;
             if (val < 99) {
                 qtyInput.value = val + 1;
             }
         });
     }
 
-    document.getElementById('add-to-cart')?.addEventListener('click', () => {
-        const quantity = parseInt(qtyInput.value);
-        addToCart(product.id, quantity);
-
-        const btn = document.getElementById('add-to-cart');
-        lucide.createIcons();
-        setTimeout(() => {
-            lucide.createIcons();
-        }, 1500);
+    const addToCartBtn = document.getElementById('add-to-cart');
+    addToCartBtn?.addEventListener('click', async () => {
+        const quantity = parseInt(qtyInput?.value, 10) || 1;
+        await addToCart(product.id, quantity, addToCartBtn);
     });
 
     const accordionHeader = document.getElementById('accordion-header');
@@ -194,13 +168,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const filteredRelated = relatedProducts.filter(p => p.id !== product.id).slice(0, 4);
     const relatedGrid = document.getElementById('related-products');
     const relatedTitle = document.querySelector('.related-products_title');
+    const relatedSection = document.querySelector('.related-products');
 
     if (relatedGrid && filteredRelated.length > 0) {
-
         if (relatedTitle) relatedTitle.style.display = 'block';
-        if (document.querySelector('.related-products')) {
-            document.querySelector('.related-products').style.display = 'block';
-        }
+        if (relatedSection) relatedSection.style.display = 'block';
 
         relatedGrid.innerHTML = filteredRelated.map(related => `
             <a href="product.html?id=${related.id}" class="related-card">
@@ -211,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <h3 class="related-card_title">${related.name}</h3>
                     <div class="related-card_rating">
                         <div class="rating-stars">
-                            ${renderStarsSmall(related.rating)}
+                            ${renderStars(related.rating)}
                         </div>
                         <span class="rating-val">(${related.rating})</span>
                     </div>
@@ -222,14 +194,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </a>
         `).join('');
+    } else {
+        if (relatedTitle) relatedTitle.style.display = 'none';
+        if (relatedSection) relatedSection.style.display = 'none';
     }
-
-     else {
-    if (relatedTitle) relatedTitle.style.display = 'none';
-    if (document.querySelector('.related-products')) {
-        document.querySelector('.related-products').style.display = 'none';
-    }
-}
 
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

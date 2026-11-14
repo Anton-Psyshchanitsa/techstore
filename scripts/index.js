@@ -1,18 +1,21 @@
 document.addEventListener('DOMContentLoaded', async () => {
-
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-
     const productsGrid = document.querySelector('.products_grid');
     if (!productsGrid) return;
 
-    const allProducts = await API.getProducts();
-
     const productsCount = document.querySelector('.products_count');
-    if (productsCount) {
-        productsCount.textContent = `${allProducts.length} products`;
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+
+    window.catalogState = {
+        page: 1,
+        limit: 12,
+        search: urlParams.get('search') || '',
+        min_price: 0,
+        max_price: 3000,
+        min_rating: null,
+        sort_by: 'title',
+        order: 'asc',
+        category: urlParams.get('category') || ''
+    };
 
     function renderStars(rating) {
         const fullStars = Math.floor(rating);
@@ -35,40 +38,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         return stars;
     }
 
-    window.renderProducts = function (products) {
+    window.renderProducts = function (products, totalCount = products.length) {
         if (!productsGrid) return;
 
-        productsGrid.innerHTML = products.map(product => `
-    <div class="product-card" data-id="${product.id}">
-        <a href="product.html?id=${product.id}" class="product-card_img-link">
-            <div class="product-card_img-wrapper">
-                <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
-            </div>
-        </a>
-        <div class="product-card_info">
-            <a href="product.html?id=${product.id}" class="product-card_title-link">
-                <h3 class="product-card_title">${product.name}</h3>
-            </a>
-            <div class="product-card_rating">
-                <div class="rating-stars">
-                    ${renderStars(product.rating)}
+        if (products.length === 0) {
+            productsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: #4A5565; padding: 24px 0;">No products found matching your criteria.</p>';
+        } else {
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <a href="product.html?id=${product.id}" class="product-card_img-link">
+                        <div class="product-card_img-wrapper">
+                            <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
+                        </div>
+                    </a>
+                    <div class="product-card_info">
+                        <a href="product.html?id=${product.id}" class="product-card_title-link">
+                            <h3 class="product-card_title">${product.name}</h3>
+                        </a>
+                        <div class="product-card_rating">
+                            <div class="rating-stars">
+                                ${renderStars(product.rating)}
+                            </div>
+                            <span class="rating-val">(${product.rating})</span>
+                        </div>
+                        <div class="product-card_footer">
+                            <span class="product-card_price">$${product.price}</span>
+                            <span class="product-card_category">${product.categoryCode || product.category}</span>
+                        </div>
+                        <button class="btn-add-to-cart" type="button">Add to Cart</button>
+                    </div>
                 </div>
-                <span class="rating-val">(${product.rating})</span>
-            </div>
-            <div class="product-card_footer">
-                <span class="product-card_price">$${product.price}</span>
-                <span class="product-card_category">${product.category}</span>
-            </div>
-            <button class="btn-add-to-cart">Add to Cart</button>
-        </div>
-    </div>
-`).join('');
+            `).join('');
+        }
+
+        if (productsCount) {
+            productsCount.textContent = `${totalCount} products`;
+        }
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
     };
 
-    window.renderProducts(allProducts);
-    window.currentProducts = allProducts;
+    window.loadCatalogProducts = async function () {
+        const result = await API.getProductsWithMeta(window.catalogState);
+        window.currentProducts = result.items;
+        window.renderProducts(result.items, result.meta.total_items);
+    };
+
+    await window.loadCatalogProducts();
 });
