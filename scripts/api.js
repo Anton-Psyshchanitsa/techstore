@@ -1,7 +1,5 @@
 const API = {
-    baseUrl: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost:3000/api'
-        : 'https://techstore-api-qu0b.onrender.com/api',
+    baseUrl: 'https://techstore-api-qu0b.onrender.com/api',
 
     getToken() {
         return localStorage.getItem('techstore_token');

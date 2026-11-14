@@ -1,197 +1,13 @@
-function ensureIntegrationStyles() {
-    if (document.getElementById('techstore-integration-styles')) return;
-
-    const style = document.createElement('style');
-    style.id = 'techstore-integration-styles';
-    style.textContent = `
-        .header_auth {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .header_auth-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            border-radius: 8px;
-            background-color: #155DFC;
-            color: #FFFFFF !important;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background-color 0.2s;
-        }
-        .header_auth-link:hover {
-            background-color: #114AC6;
-        }
-        .header_user {
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            color: #364153;
-            max-width: 140px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .header_search-bar {
-            display: none;
-            width: 100%;
-            background-color: #F9FAFB;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            padding: 12px 32px;
-        }
-        .header_search-bar.open {
-            display: block;
-        }
-        .header_search-container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-        .header_search-form {
-            display: flex;
-            gap: 10px;
-        }
-        .header_search-input {
-            flex: 1;
-            height: 40px;
-            padding: 0 14px;
-            border: 1px solid #D1D5DC;
-            border-radius: 8px;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            outline: none;
-            background: #FFFFFF;
-        }
-        .header_search-input:focus {
-            border-color: #155DFC;
-        }
-        .header_search-submit {
-            height: 40px;
-            padding: 0 18px;
-            border: none;
-            border-radius: 8px;
-            background-color: #155DFC;
-            color: #FFFFFF;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .header_search-clear {
-            height: 40px;
-            padding: 0 14px;
-            border: 1px solid #D1D5DC;
-            border-radius: 8px;
-            background-color: #FFFFFF;
-            color: #364153;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .auth_container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 64px 16px;
-        }
-        .auth_card {
-            width: 100%;
-            max-width: 440px;
-            background-color: #FFFFFF;
-            border: 1px solid #E5E7EB;
-            border-radius: 16px;
-            padding: 36px 32px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        .auth_title {
-            font-family: "Inter", sans-serif;
-            font-size: 26px;
-            font-weight: 700;
-            color: #0A0A0A;
-            margin: 0 0 8px 0;
-            text-align: center;
-        }
-        .auth_subtitle {
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            color: #4A5565;
-            margin: 0 0 24px 0;
-            text-align: center;
-        }
-        .auth_error {
-            background-color: #FEF2F2;
-            border: 1px solid #FECACA;
-            color: #DC2626;
-            padding: 12px;
-            border-radius: 8px;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        .auth_form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .auth_field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .auth_label {
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            color: #111827;
-        }
-        .auth_input {
-            height: 44px;
-            padding: 0 14px;
-            border: 1px solid #D1D5DC;
-            border-radius: 8px;
-            font-family: "Inter", sans-serif;
-            font-size: 15px;
-            outline: none;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .auth_input:focus {
-            border-color: #155DFC;
-        }
-        .auth_submit {
-            height: 46px;
-            border: none;
-            border-radius: 8px;
-            background-color: #155DFC;
-            color: #FFFFFF;
-            font-family: "Inter", sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 6px;
-            transition: background-color 0.2s;
-        }
-        .auth_submit:hover {
-            background-color: #114AC6;
-        }
-        .auth_switch {
-            margin: 20px 0 0 0;
-            text-align: center;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            color: #4A5565;
-        }
-        .auth_link {
-            color: #155DFC;
-            font-weight: 600;
-            text-decoration: none;
-        }
-    `;
-    document.head.appendChild(style);
+function loadAuthStylesheet() {
+    if (document.getElementById('techstore-auth-css')) return;
+    const link = document.createElement('link');
+    link.id = 'techstore-auth-css';
+    link.rel = 'stylesheet';
+    link.href = 'scss/auth.css?v=2';
+    document.head.appendChild(link);
 }
+
+loadAuthStylesheet();
 
 async function updateCartBadge(cartData = null) {
     const badge = document.querySelector('.header_badge');
@@ -311,7 +127,7 @@ function initHeaderSearch() {
         searchBar.innerHTML = `
             <div class="header_search-container">
                 <form id="header-search-form" class="header_search-form">
-                    <input type="text" id="header-search-input" class="header_search-input" placeholder="Search products by name or description...">
+                    <input type="text" id="header-search-input" class="header_search-input" placeholder="Search products...">
                     <button type="submit" class="header_search-submit">Search</button>
                     <button type="button" id="header-search-clear" class="header_search-clear">Clear</button>
                 </form>
@@ -363,7 +179,6 @@ function initHeaderSearch() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    ensureIntegrationStyles();
     renderHeaderAuth();
     initHeaderSearch();
     updateCartBadge();

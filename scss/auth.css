@@ -1,0 +1,258 @@
+.header_auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header_auth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: #155DFC;
+  color: #FFFFFF !important;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.header_auth-link:hover {
+  background-color: #114AC6;
+}
+
+.header_user {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #364153;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header_search-bar {
+  display: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #F9FAFB;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 12px 32px;
+  overflow-x: hidden;
+}
+
+.header_search-bar.open {
+  display: block;
+}
+
+.header_search-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header_search-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header_search-input {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #D1D5DC;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  outline: none;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.header_search-input:focus {
+  border-color: #155DFC;
+}
+
+.header_search-submit {
+  height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #155DFC;
+  color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.header_search-clear {
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #D1D5DC;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #364153;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .header_search-bar {
+    padding: 10px 16px;
+  }
+
+  .header_search-form {
+    gap: 6px;
+  }
+
+  .header_search-input {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .header_search-submit,
+  .header_search-clear {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .header_user {
+    max-width: 80px;
+    font-size: 13px;
+  }
+
+  .header_auth-link {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+.auth_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 16px;
+}
+
+.auth_card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.auth_title {
+  font-family: "Inter", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0A0A0A;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.auth_subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #4A5565;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.auth_error {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth_label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.auth_input {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #D1D5DC;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth_input:focus {
+  border-color: #155DFC;
+}
+
+.auth_submit {
+  height: 46px;
+  border: none;
+  border-radius: 8px;
+  background-color: #155DFC;
+  color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s;
+}
+
+.auth_submit:hover {
+  background-color: #114AC6;
+}
+
+.auth_switch {
+  margin: 20px 0 0 0;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #4A5565;
+}
+
+.auth_link {
+  color: #155DFC;
+  font-weight: 600;
+  text-decoration: none;
+}
