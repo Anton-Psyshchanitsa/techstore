@@ -3,7 +3,7 @@ function loadAuthStylesheet() {
     const link = document.createElement('link');
     link.id = 'techstore-auth-css';
     link.rel = 'stylesheet';
-    link.href = 'scss/auth.css?v=2';
+    link.href = 'scss/auth.css?v=3';
     document.head.appendChild(link);
 }
 
@@ -79,8 +79,13 @@ function renderHeaderAuth() {
     if (API.isAuthenticated()) {
         const user = API.getUser();
         const emailLabel = user?.email ? user.email.split('@')[0] : 'Account';
+        const adminLink =
+            user?.role === 'admin'
+                ? `<a href="admin.html" class="header_auth-link" title="Admin Panel"><span>Admin</span></a>`
+                : '';
 
         authWrapper.innerHTML = `
+            ${adminLink}
             <span class="header_user" title="${user?.email || ''}">${emailLabel}</span>
             <button type="button" class="header_btn" id="logout-btn" title="Sign Out">
                 <i data-lucide="log-out" class="header_icon"></i>

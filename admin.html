@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Admin Panel</title>
+    <link rel="stylesheet" href="scss/styles.css">
+    <link rel="stylesheet" href="scss/auth.css?v=3">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_container">
+            <a href="index.html" class="header_logo">
+                <div class="header_logo-icon">TS</div>
+                <span class="header_logo-text">TechStore</span>
+            </a>
+            <nav class="header_nav">
+                <a href="index.html" class="header_link">Products</a>
+                <a href="categories.html" class="header_link">Categories</a>
+                <a href="deals.html" class="header_link">Deals</a>
+                <a href="about.html" class="header_link">About</a>
+            </nav>
+            <div class="header_actions">
+                <button class="header_btn" aria-label="Search">
+                    <i data-lucide="search" class="header_icon"></i>
+                </button>
+                <a href="cart.html" class="header_btn cart-btn" aria-label="Cart">
+                    <i data-lucide="shopping-cart" class="header_icon"></i>
+                    <span class="header_badge">0</span>
+                </a>
+                <button class="header_btn header_burger" id="burger-btn" aria-label="Menu">
+                    <i data-lucide="menu" class="header_icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin_page">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+            <div class="admin_header">
+                <div>
+                    <h1 class="admin_title">Admin Panel</h1>
+                    <p class="admin_subtitle">Manage TechStore catalog, stock, and Cloudinary images</p>
+                </div>
+                <button type="button" id="add-product-button" class="admin_btn">+ Add Product</button>
+            </div>
+
+            <div id="admin-message" class="admin_alert"></div>
+
+            <div id="products-section">
+                <div class="admin_toolbar">
+                    <input
+                        id="admin-search"
+                        type="search"
+                        class="admin_search-input"
+                        placeholder="Search products by title or description..."
+                    />
+                </div>
+
+                <div class="admin_table-wrap">
+                    <table class="admin_table">
+                        <thead>
+                            <tr>
+                                <th style="width: 38%;">Product</th>
+                                <th style="width: 16%;">Category</th>
+                                <th style="width: 14%;">Price</th>
+                                <th style="width: 12%;">Stock</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products"></tbody>
+                    </table>
+                </div>
+
+                <div class="admin_pagination">
+                    <button type="button" id="admin-prev" class="admin_btn admin_btn--secondary">Previous</button>
+                    <span id="admin-page-info">Page 1 of 1</span>
+                    <button type="button" id="admin-next" class="admin_btn admin_btn--secondary">Next</button>
+                </div>
+            </div>
+
+            <section id="product-form-section" class="admin_form-card">
+                <div class="admin_form-header">
+                    <h2 id="product-form-title" style="margin: 0; font-size: 22px;">Add Product</h2>
+                    <button type="button" id="cancel-product-button" class="admin_btn admin_btn--secondary">Cancel</button>
+                </div>
+
+                <form id="product-form" class="auth_form">
+                    <input type="hidden" id="product-id" />
+
+                    <div class="auth_field">
+                        <label for="product-title" class="auth_label">Title</label>
+                        <input id="product-title" type="text" class="auth_input" required minlength="2" maxlength="255" />
+                    </div>
+
+                    <div class="admin_form-grid">
+                        <div class="auth_field">
+                            <label for="product-price" class="auth_label">Price ($)</label>
+                            <input id="product-price" type="number" class="auth_input" min="1" step="0.01" required />
+                        </div>
+                        <div class="auth_field">
+                            <label for="product-discount" class="auth_label">Discount (%)</label>
+                            <input id="product-discount" type="number" class="auth_input" min="0" max="90" value="0" />
+                        </div>
+                        <div class="auth_field">
+                            <label for="product-stock" class="auth_label">Stock Quantity</label>
+                            <input id="product-stock" type="number" class="auth_input" min="0" step="1" value="10" required />
+                        </div>
+                    </div>
+
+                    <div class="admin_form-grid">
+                        <div class="auth_field">
+                            <label for="product-category" class="auth_label">Category</label>
+                            <select id="product-category" class="auth_input" required>
+                                <option value="audio">Audio</option>
+                                <option value="computers">Computers</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="wearables">Wearables</option>
+                                <option value="photography">Photography</option>
+                                <option value="tablets">Tablets</option>
+                                <option value="gaming">Gaming</option>
+                            </select>
+                        </div>
+                        <div class="auth_field">
+                            <label for="product-rating" class="auth_label">Rating (0 - 5)</label>
+                            <input id="product-rating" type="number" class="auth_input" min="0" max="5" step="0.1" value="4.8" />
+                        </div>
+                        <div class="auth_field">
+                            <label for="product-reviews" class="auth_label">Reviews Count</label>
+                            <input id="product-reviews" type="number" class="auth_input" min="0" step="1" value="25" />
+                        </div>
+                    </div>
+
+                    <div class="auth_field">
+                        <label for="product-description" class="auth_label">Description</label>
+                        <textarea id="product-description" rows="4" class="auth_input" required></textarea>
+                    </div>
+
+                    <div class="auth_field">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <label class="auth_label">Product Images (minimum 3 URLs for slider)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <label class="admin_btn admin_btn--secondary" style="cursor: pointer; padding: 6px 12px; font-size: 13px;">
+                                    Upload to Cloudinary
+                                    <input type="file" id="cloudinary-file-input" accept="image/*" style="display: none;" />
+                                </label>
+                                <button type="button" id="add-image-button" class="admin_btn admin_btn--secondary" style="padding: 6px 12px; font-size: 13px;">+ Add URL</button>
+                            </div>
+                        </div>
+                        <div id="product-images" class="admin_dynamic-list"></div>
+                    </div>
+
+                    <div class="auth_field">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label class="auth_label">Technical Specifications</label>
+                            <button type="button" id="add-specification-button" class="admin_btn admin_btn--secondary" style="padding: 6px 12px; font-size: 13px;">+ Add Specification</button>
+                        </div>
+                        <div id="product-specifications" class="admin_dynamic-list"></div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-top: 8px;">
+                        <button type="submit" id="save-product-button" class="admin_btn" style="flex: 1; padding: 12px;">Save Product</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

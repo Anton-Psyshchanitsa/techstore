@@ -48,11 +48,12 @@ const API = {
             discount: Number(item.discount ?? 0),
             rating: Number(item.rating ?? 0),
             reviews: Number(item.reviews ?? 0),
+            stock_quantity: Number(item.stock_quantity ?? 10),
             category: typeof item.category === 'object' ? (item.category?.name || '') : (item.category || ''),
             categoryCode: item.categoryCode || (typeof item.category === 'object' ? item.category?.code : '') || '',
             images,
             features: Array.isArray(item.features) ? item.features : [],
-            specifications: Array.isArray(item.specifications) ? item.specifications : []
+            specifications: item.specifications || {}
         };
     },
 
@@ -301,5 +302,47 @@ const API = {
             body: JSON.stringify({ code })
         });
         return this.normalizeCart(data);
+    },
+
+    async createProduct(productPayload) {
+        const data = await this.request('/products', {
+            method: 'POST',
+            body: JSON.stringify(productPayload)
+        });
+        return this.normalizeProduct(data);
+    },
+
+    async updateProduct(id, productPayload) {
+        const data = await this.request(`/products/${encodeURIComponent(id)}`, {
+            method: 'PATCH',
+            body: JSON.stringify(productPayload)
+        });
+        return this.normalizeProduct(data);
+    },
+
+    async deleteProduct(id) {
+        return await this.request(`/products/${encodeURIComponent(id)}`, {
+            method: 'DELETE'
+        });
+    },
+
+    async uploadProductImage(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        const headers = {};
+        const token = this.getToken();
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        const response = await fetch(`${this.baseUrl}/products/upload-image`, {
+            method: 'POST',
+            headers,
+            body: formData
+        });
+        const payload = await response.json().catch(() => null);
+        if (!response.ok) {
+            throw new Error(payload?.error?.message || 'Image upload failed');
+        }
+        return payload?.data?.url || payload?.url;
     }
 };
