@@ -42,15 +42,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     let totalPages = 1;
     let searchTerm = '';
     let searchTimer = null;
+    let categoriesList = [];
+
+    try {
+        categoriesList = await API.getCategories();
+        if (Array.isArray(categoriesList) && categoriesList.length > 0) {
+            categoryInput.innerHTML = categoriesList
+                .map((c) => `<option value="${c.code || c.name.toLowerCase()}">${c.name}</option>`)
+                .join('');
+        }
+    } catch {
+        categoriesList = [];
+    }
 
     function showMessage(text, isError = false) {
         messageBox.textContent = text;
         messageBox.className = `admin_alert visible ${
             isError ? 'admin_alert--error' : 'admin_alert--success'
         }`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => {
             messageBox.className = 'admin_alert';
-        }, 5000);
+        }, 6000);
+    }
+
+    function formatApiError(err) {
+        if (err && Array.isArray(err.details) && err.details.length > 0) {
+            const detailStr = err.details
+                .map((d) => `${d.field || d.path || 'field'}: ${d.message}`)
+                .join('; ');
+            return `${err.message} (${detailStr})`;
+        }
+        return err?.message || 'Operation failed';
     }
 
     function addImageRow(url = '') {
@@ -94,10 +117,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             formTitle.textContent = `Edit Product #${product.id}`;
             idInput.value = String(product.id);
             titleInput.value = product.title || product.name || '';
-            priceInput.value = String(product.price || 0);
+            
+            // Если есть скидка, в поле ввода цены ставим СТАРУЮ цену, чтобы она не пересчиталась дважды
+            priceInput.value = String(product.originalPrice || product.price || 0);
             discountInput.value = String(product.discount || 0);
-            stockInput.value = String(product.stock_quantity ?? 10);
-            categoryInput.value = (product.categoryCode || product.category || 'audio').toLowerCase();
+            stockInput.value = String(product.stock_quantity ?? product.stockQuantity ?? 10);
+
+            const matchedCategory = categoriesList.find(
+                (c) =>
+                    c.code?.toLowerCase() === String(product.categoryCode || product.category || '').toLowerCase() ||
+                    c.name?.toLowerCase() === String(product.category || '').toLowerCase()
+            );
+            if (matchedCategory) {
+                categoryInput.value = matchedCategory.code;
+            } else {
+                categoryInput.value = String(product.categoryCode || product.category || 'audio').toLowerCase();
+            }
+
             ratingInput.value = String(product.rating ?? 4.8);
             reviewsInput.value = String(product.reviews ?? 25);
             descInput.value = product.description || '';
@@ -112,9 +148,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             imgs.forEach((u) => addImageRow(u));
 
             const rawSpecs = product.specifications;
+            // Защита: если спецификации пришли как массив строк (["Brand: Sony", "Weight: 250g"])
             if (Array.isArray(rawSpecs) && rawSpecs.length > 0) {
-                rawSpecs.forEach((s) => addSpecRow(s.name || s.key || '', s.value || ''));
+                rawSpecs.forEach((s) => {
+                    if (typeof s === 'string') {
+                        const [k, v] = s.split(': ');
+                        addSpecRow(k || '', v || '');
+                    } else {
+                        addSpecRow(s.name || s.key || '', s.value || '');
+                    }
+                });
             } else if (rawSpecs && typeof rawSpecs === 'object' && Object.keys(rawSpecs).length > 0) {
+                // Если пришли как объект ({"Brand": "Sony"})
                 Object.entries(rawSpecs).forEach(([k, v]) => addSpecRow(k, String(v)));
             } else {
                 addSpecRow('Brand', 'TechStore');
@@ -164,9 +209,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             tbody.innerHTML = items
                 .map((p) => {
                     const thumb = p.images && p.images[0] ? p.images[0] : '';
-                    const priceText = p.discountPrice
-                        ? `<strong>$${p.discountPrice}</strong> <span style="text-decoration: line-through; color: #6A7282; font-size: 12px;">$${p.price}</span>`
-                        : `<strong>$${p.price}</strong>`;
+                    
+                    // Проверяем, есть ли скидка. Если originalPrice больше текущей, выводим зачеркнутую
+                    const isDiscounted = p.originalPrice && p.originalPrice > p.price;
+                    const priceText = isDiscounted
+                        ? `<strong>$${p.price.toFixed(2)}</strong> <span style="text-decoration: line-through; color: #6A7282; font-size: 13px; margin-left: 6px;">$${p.originalPrice.toFixed(2)}</span>`
+                        : `<strong>$${p.price.toFixed(2)}</strong>`;
+
                     return `
                         <tr>
                             <td>
@@ -180,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             </td>
                             <td style="text-transform: capitalize;">${p.category}</td>
                             <td>${priceText}</td>
-                            <td>${p.stock_quantity} pcs</td>
+                            <td>${p.stock_quantity ?? p.stockQuantity ?? 10} pcs</td>
                             <td>
                                 <div class="admin_actions-cell">
                                     <button type="button" class="admin_btn admin_btn--secondary edit-btn" data-id="${p.id}" style="padding: 6px 12px; font-size: 13px;">Edit</button>
@@ -199,7 +248,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         const fullProduct = await API.getProductById(id);
                         openForm(fullProduct);
                     } catch (err) {
-                        showMessage(err.message || 'Failed to load product details', true);
+                        showMessage(formatApiError(err), true);
                     }
                 });
             });
@@ -215,12 +264,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         showMessage(`Product #${id} deleted and catalog cache cleared.`);
                         await loadProducts();
                     } catch (err) {
-                        showMessage(err.message || 'Failed to delete product', true);
+                        showMessage(formatApiError(err), true);
                     }
                 });
             });
         } catch (err) {
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 32px; color: #DC2626;">${err.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 32px; color: #DC2626;">${formatApiError(err)}</td></tr>`;
         }
     }
 
@@ -246,7 +295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             showMessage('Image uploaded to Cloudinary!');
         } catch (err) {
-            showMessage(err.message || 'Cloudinary upload failed', true);
+            showMessage(formatApiError(err), true);
         } finally {
             cloudinaryFileInput.value = '';
         }
@@ -297,25 +346,43 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         const price = Number(priceInput.value);
-        const discount = Number(discountInput.value || 0);
-        const discountPrice =
-            discount > 0 ? Math.round(price * (1 - discount / 100) * 100) / 100 : null;
+        const discount = Math.round(Number(discountInput.value || 0));
+        const selectedCategoryCode = categoryInput.value;
+        const matchedCat = categoriesList.find(
+            (c) => c.code?.toLowerCase() === selectedCategoryCode.toLowerCase()
+        );
 
         const payload = {
             title: titleInput.value.trim(),
             description: descInput.value.trim(),
             price,
-            discount: discount > 0 ? discount : null,
-            discount_price: discountPrice,
-            is_deal: discount > 0,
             rating: Number(ratingInput.value || 4.8),
             reviews: Number(reviewsInput.value || 0),
             stock_quantity: Number(stockInput.value || 0),
-            category: categoryInput.value,
+            category: selectedCategoryCode,
+            categoryCode: selectedCategoryCode,
+            discount,
             images,
             features: ['Premium build quality', 'Official TechStore warranty', 'Fast delivery'],
             specifications
         };
+
+        if (matchedCat && matchedCat.id) {
+            payload.category_id = Number(matchedCat.id);
+            payload.categoryId = Number(matchedCat.id);
+        }
+
+        if (discount > 0) {
+            payload.discount_price = Math.round(price * (1 - discount / 100) * 100) / 100;
+            payload.discountPrice = payload.discount_price;
+            payload.is_deal = true;
+            payload.isDeal = true;
+        } else {
+            payload.discount_price = null;
+            payload.discountPrice = null;
+            payload.is_deal = false;
+            payload.isDeal = false;
+        }
 
         saveBtn.disabled = true;
         saveBtn.textContent = 'Saving...';
@@ -332,7 +399,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             closeForm();
             await loadProducts();
         } catch (err) {
-            showMessage(err.message || 'Failed to save product', true);
+            showMessage(formatApiError(err), true);
         } finally {
             saveBtn.disabled = false;
             saveBtn.textContent = 'Save Product';

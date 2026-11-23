@@ -44,11 +44,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (products.length === 0) {
             productsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: #4A5565; padding: 24px 0;">No products found matching your criteria.</p>';
         } else {
-            productsGrid.innerHTML = products.map(product => `
+            productsGrid.innerHTML = products.map(product => {
+                const imgSrc = (product.images && product.images.length > 0) ? product.images[0] : '';
+                
+                return `
                 <div class="product-card" data-id="${product.id}">
                     <a href="product.html?id=${product.id}" class="product-card_img-link">
                         <div class="product-card_img-wrapper">
-                            <img src="${product.images[0]}" alt="${product.name}" class="product-card_img">
+                            <img src="${imgSrc}" alt="${product.name}" class="product-card_img">
                         </div>
                     </a>
                     <div class="product-card_info">
@@ -63,12 +66,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <div class="product-card_footer">
                             <span class="product-card_price">$${product.price}</span>
-                            <span class="product-card_category">${product.categoryCode || product.category}</span>
+                            <span class="product-card_category">${product.category}</span>
                         </div>
                         <button class="btn-add-to-cart" type="button">Add to Cart</button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         if (productsCount) {

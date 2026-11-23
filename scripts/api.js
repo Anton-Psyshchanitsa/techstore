@@ -1,5 +1,7 @@
 const API = {
-    baseUrl: 'https://techstore-api-qu0b.onrender.com/api',
+    baseUrl: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:3000/api'
+        : 'https://techstore-api-qu0b.onrender.com/api',
 
     getToken() {
         return localStorage.getItem('techstore_token');
@@ -29,31 +31,33 @@ const API = {
         return Boolean(this.getToken());
     },
 
-    normalizeProduct(raw) {
-        if (!raw || typeof raw !== 'object') return null;
-        const item = raw.item || raw.product || raw;
-        if (!item || !item.id) return null;
-
-        const images = Array.isArray(item.images)
-            ? item.images.map(img => (typeof img === 'string' ? img : img?.url)).filter(Boolean)
-            : [];
-
+    normalizeProduct(p) {
+        if (!p) return null;
+        const dPrice = p.discountPrice ?? p.discount_price;
         return {
-            ...item,
-            id: Number(item.id),
-            name: item.name || item.title || '',
-            title: item.title || item.name || '',
-            price: Number(item.price ?? 0),
-            discountPrice: item.discountPrice !== null && item.discountPrice !== undefined ? Number(item.discountPrice) : null,
-            discount: Number(item.discount ?? 0),
-            rating: Number(item.rating ?? 0),
-            reviews: Number(item.reviews ?? 0),
-            stock_quantity: Number(item.stock_quantity ?? 10),
-            category: typeof item.category === 'object' ? (item.category?.name || '') : (item.category || ''),
-            categoryCode: item.categoryCode || (typeof item.category === 'object' ? item.category?.code : '') || '',
-            images,
-            features: Array.isArray(item.features) ? item.features : [],
-            specifications: item.specifications || {}
+            id: p.id,
+            name: p.title || p.name,
+            title: p.title || p.name,
+            slug: p.slug || '',
+            category: p.category?.code || p.category || 'uncategorized',
+            category_id: p.category_id || p.category?.id || null,
+            price: Number(dPrice || p.price || 0),
+            originalPrice: dPrice ? Number(p.price) : (p.originalPrice ? Number(p.originalPrice) : null),
+            discount: p.discount || null,
+            rating: Number(p.rating || 0),
+            reviews: Number(p.reviews || 0),
+            image: (Array.isArray(p.images) && p.images.length > 0)
+                ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].url)
+                : (p.image || ''),
+            images: Array.isArray(p.images)
+                ? p.images.map(img => typeof img === 'string' ? img : img.url)
+                : (p.image ? [p.image] : []),
+            isDeal: Boolean(p.is_deal ?? p.isDeal),
+            inStock: (p.stock_quantity !== undefined) ? p.stock_quantity > 0 : Boolean(p.inStock ?? true),
+            stock_quantity: p.stock_quantity ?? 10,
+            description: p.description || '',
+            features: Array.isArray(p.features) ? p.features : [],
+            specifications: (p.specifications && typeof p.specifications === 'object') ? p.specifications : {}
         };
     },
 

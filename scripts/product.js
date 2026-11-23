@@ -94,15 +94,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const specsContainer = document.querySelector('.specs-table');
     if (specsContainer && product.specifications) {
-        specsContainer.innerHTML = product.specifications.map(spec => {
-            const [label, value] = String(spec).split(': ');
-            return `
+        let specsHtml = '';
+        
+        // Если спецификации пришли как массив (старый формат)
+        if (Array.isArray(product.specifications)) {
+            specsHtml = product.specifications.map(spec => {
+                const [label, value] = String(spec).split(': ');
+                return `
+                    <div class="specs-row">
+                        <span class="specs-label">${label || ''}</span>
+                        <span class="specs-value">${value || ''}</span>
+                    </div>
+                `;
+            }).join('');
+        } 
+        // Если спецификации пришли как объект (новый формат)
+        else if (typeof product.specifications === 'object' && product.specifications !== null) {
+            specsHtml = Object.entries(product.specifications).map(([label, value]) => `
                 <div class="specs-row">
-                    <span class="specs-label">${label || ''}</span>
-                    <span class="specs-value">${value || ''}</span>
+                    <span class="specs-label">${label}</span>
+                    <span class="specs-value">${value}</span>
                 </div>
-            `;
-        }).join('');
+            `).join('');
+        }
+        
+        specsContainer.innerHTML = specsHtml;
     }
 
     if (currentImages.length > 0) {
@@ -130,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const qtyMinus = document.querySelector('.qty-minus');
     const qtyPlus = document.querySelector('.qty-plus');
 
-    if (qtyMinus) {
+    if (qtyMinus && qtyInput) {
         qtyMinus.addEventListener('click', () => {
             const val = parseInt(qtyInput.value, 10) || 1;
             if (val > 1) {
@@ -139,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    if (qtyPlus) {
+    if (qtyPlus && qtyInput) {
         qtyPlus.addEventListener('click', () => {
             const val = parseInt(qtyInput.value, 10) || 1;
             if (val < 99) {
@@ -164,7 +180,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const relatedProducts = await API.getProductsByCategory(product.categoryCode);
+    // Исправлено: product.categoryCode изменено на product.category
+    const relatedProducts = await API.getProductsByCategory(product.category);
     const filteredRelated = relatedProducts.filter(p => p.id !== product.id).slice(0, 4);
     const relatedGrid = document.getElementById('related-products');
     const relatedTitle = document.querySelector('.related-products_title');
@@ -174,26 +191,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (relatedTitle) relatedTitle.style.display = 'block';
         if (relatedSection) relatedSection.style.display = 'block';
 
-        relatedGrid.innerHTML = filteredRelated.map(related => `
-            <a href="product.html?id=${related.id}" class="related-card">
-                <div class="related-card_img-wrapper">
-                    <img src="${related.images[0]}" alt="${related.name}" class="related-card_img">
-                </div>
-                <div class="related-card_info">
-                    <h3 class="related-card_title">${related.name}</h3>
-                    <div class="related-card_rating">
-                        <div class="rating-stars">
-                            ${renderStars(related.rating)}
+        relatedGrid.innerHTML = filteredRelated.map(related => {
+            const relImg = (related.images && related.images.length > 0) ? related.images[0] : '';
+            return `
+                <a href="product.html?id=${related.id}" class="related-card">
+                    <div class="related-card_img-wrapper">
+                        <img src="${relImg}" alt="${related.name}" class="related-card_img">
+                    </div>
+                    <div class="related-card_info">
+                        <h3 class="related-card_title">${related.name}</h3>
+                        <div class="related-card_rating">
+                            <div class="rating-stars">
+                                ${renderStars(related.rating)}
+                            </div>
+                            <span class="rating-val">(${related.rating})</span>
                         </div>
-                        <span class="rating-val">(${related.rating})</span>
+                        <div class="related-card_footer">
+                            <span class="related-card_price">$${related.price}</span>
+                            <span class="related-card_category">${related.category}</span>
+                        </div>
                     </div>
-                    <div class="related-card_footer">
-                        <span class="related-card_price">$${related.price}</span>
-                        <span class="related-card_category">${related.categoryCode}</span>
-                    </div>
-                </div>
-            </a>
-        `).join('');
+                </a>
+            `;
+        }).join('');
     } else {
         if (relatedTitle) relatedTitle.style.display = 'none';
         if (relatedSection) relatedSection.style.display = 'none';
