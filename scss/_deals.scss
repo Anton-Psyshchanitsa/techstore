@@ -187,6 +187,7 @@
     flex-direction: column;
     position: relative;
     cursor: pointer;
+    height: 100%;
 
     &_img-wrapper {
         width: 100%;
@@ -230,6 +231,11 @@
         margin-bottom: 12px;
         line-height: 1.4;
         color: #0A0A0A;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 44.8px;
 
         &:hover {
             color: #155DFC;
@@ -240,7 +246,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 12px;
+        margin-bottom: 0;
 
         .rating-stars {
             display: flex;
@@ -268,6 +274,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: auto;
+        padding-top: 12px;
     }
 
     &_price-current {

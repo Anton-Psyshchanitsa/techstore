@@ -4,13 +4,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     const dealProducts = await API.getDealProducts();
     
-    const orderedProducts = [];
-    const order = ['Premium Wireless Headphones', 'Professional Laptop Pro', 'Smart Fitness Watch Ultra', 'Professional DSLR Camera'];
-    
-    order.forEach(name => {
-        const product = dealProducts.find(p => p.name === name);
-        if (product) orderedProducts.push(product);
-    });
+    if (!dealProducts || dealProducts.length === 0) {
+        dealsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: #4A5565; padding: 24px 0;">No deals available at the moment.</p>';
+        return;
+    }
     
     function renderStars(rating) {
         const fullStars = Math.floor(rating);
@@ -33,11 +30,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         return stars;
     }
     
-    dealsGrid.innerHTML = orderedProducts.map(product => `
+    dealsGrid.innerHTML = dealProducts.map(product => {
+        const imgSrc = (product.images && product.images.length > 0) ? product.images[0] : '';
+        
+        return `
         <a href="product.html?id=${product.id}" class="deal-card-link">
             <article class="deal-card" data-id="${product.id}" data-price="${product.price}" data-rating="${product.rating}">
                 <div class="deal-card_img-wrapper">
-                    <img src="${product.images[0]}" alt="${product.name}" class="deal-card_img">
+                    <img src="${imgSrc}" alt="${product.name}" class="deal-card_img">
                     ${product.discount ? `<div class="deal-card_discount">Save ${product.discount}%</div>` : ''}
                 </div>
                 <div class="deal-card_info">
@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <div class="deal-card_price-category">
                         <div class="deal-card_price-current">$${product.price}</div>
-                        <div class="deal-card_category">${product.categoryCode}</div>
+                        <div class="deal-card_category">${product.category}</div> <!-- Исправлено на product.category -->
                     </div>
                 </div>
             </article>
         </a>
-    `).join('');
+    `}).join('');
     
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

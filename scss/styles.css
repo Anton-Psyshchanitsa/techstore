@@ -616,7 +616,7 @@ body {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 44.8px; /* 16px * 1.4 * 2 */
+  min-height: 44.8px;
 }
 .product-card_rating {
   display: flex;
@@ -1925,6 +1925,7 @@ body {
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  height: 100%;
 }
 .deal-card_img-wrapper {
   width: 100%;
@@ -1965,6 +1966,11 @@ body {
   margin-bottom: 12px;
   line-height: 1.4;
   color: #0A0A0A;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 44.8px;
 }
 .deal-card_title:hover {
   color: #155DFC;
@@ -1973,7 +1979,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 .deal-card_rating .rating-stars {
   display: flex;
@@ -1996,6 +2002,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
 }
 .deal-card_price-current {
   font-size: 20px;
