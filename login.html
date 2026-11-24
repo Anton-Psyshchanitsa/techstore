@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - TechStore</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="scss/styles.css">
+
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header_container">
+            <div class="header_wrapper">
+                <a href="index.html" class="header_logo">
+                    <div class="header_logo-icon">T</div>
+                    <span class="header_logo-text">TechStore</span>
+                </a>
+
+                <nav class="header_nav">
+                    <a href="index.html" class="header_link">Products</a>
+                    <a href="categories.html" class="header_link">Categories</a>
+                    <a href="deals.html" class="header_link">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
+                </nav>
+
+                <div class="header_actions">
+                    <button class="header_btn">
+                        <i data-lucide="search" class="header_icon"></i>
+                    </button>
+                    <a href="cart.html" class="header_btn cart-btn">
+                        <i data-lucide="shopping-cart" class="header_icon"></i>
+                        <span class="header_badge">0</span>
+                    </a>
+                    <button class="header_burger" id="burger-btn">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-container">
+            <div class="auth_container">
+                <div class="auth_card">
+                    <h1 class="auth_title">Welcome Back</h1>
+                    <p class="auth_subtitle">Sign in to your TechStore account to manage your cart</p>
+
+                    <div id="auth-error" class="auth_error" style="display: none;"></div>
+
+                    <form id="login-form" class="auth_form">
+                        <div class="auth_field">
+                            <label for="email" class="auth_label">Email Address</label>
+                            <input type="email" id="email" class="auth_input" placeholder="customer@techstore.local" required>
+                        </div>
+
+                        <div class="auth_field">
+                            <label for="password" class="auth_label">Password</label>
+                            <input type="password" id="password" class="auth_input" placeholder="Enter your password" required>
+                        </div>
+
+                        <button type="submit" class="auth_submit">Sign In</button>
+                    </form>
+
+                    <p class="auth_switch">
+                        Don't have an account? <a href="register.html" class="auth_link">Create Account</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+
+</html>

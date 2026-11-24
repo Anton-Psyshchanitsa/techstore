@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Categories</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="scss/styles.css">
+
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header_container">
+            <div class="header_wrapper">
+                <a href="index.html" class="header_logo">
+                    <div class="header_logo-icon">T</div>
+                    <span class="header_logo-text">TechStore</span>
+                </a>
+
+                <nav class="header_nav">
+                    <a href="index.html" class="header_link">Products</a>
+                    <a href="categories.html" class="header_link active">Categories</a>
+                    <a href="deals.html" class="header_link">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
+                </nav>
+
+                <div class="header_actions">
+                    <button class="header_btn">
+                        <i data-lucide="search" class="header_icon"></i>
+                    </button>
+                    <a href="cart.html" class="header_btn cart-btn">
+                        <i data-lucide="shopping-cart" class="header_icon"></i>
+                        <span class="header_badge">0</span>
+                    </a>
+                    <button class="header_burger" id="burger-btn">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-container">
+            <div class="catalog_container">
+                <div class="catalog_header">
+                    <h1 class="catalog_title">Product Categories</h1>
+                    <p class="catalog_subtitle">Browse our wide selection of premium electronics by category</p>
+                </div>
+
+                <div class="categories_grid">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_grid">
+                <div class="footer_col">
+                    <a href="index.html" class="footer_logo">
+                        <div class="footer_logo-icon">T</div>
+                        <span class="footer_logo-text">TechStore</span>
+                    </a>
+                    <p class="footer_text">
+                        Your trusted destination for premium electronics and tech accessories. Quality products,
+                        competitive prices, exceptional service.
+                    </p>
+                    <div class="footer_socials">
+                        <a href="#" class="footer_social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Quick Links</h3>
+                    <ul class="footer_list">
+                        <li><a href="index.html" class="footer_link">Shop All Products</a></li>
+                        <li><a href="deals.html" class="footer_link">Special Deals</a></li>
+                        <li><a href="about.html" class="footer_link">About Us</a></li>
+                        <li><a href="#" class="footer_link">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Customer Service</h3>
+                    <ul class="footer_list">
+                        <li><a href="#" class="footer_link">Shipping Information</a></li>
+                        <li><a href="#" class="footer_link">Returns & Exchanges</a></li>
+                        <li><a href="#" class="footer_link">FAQ</a></li>
+                        <li><a href="#" class="footer_link">Track Order</a></li>
+                    </ul>
+                    <div class="footer_contact">
+                        <span class="footer_label">Customer Support:</span>
+                        <span class="footer_phone">1-800-TECH-SHOP</span>
+                        <span class="footer_email">support@techstore.com</span>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Newsletter</h3>
+                    <p class="footer_text">
+                        Subscribe to get special offers, free<br>
+                        giveaways, and updates.
+                    </p>
+                    <form class="footer_form">
+                        <input type="email" class="footer_input" placeholder="Enter your email">
+                        <button type="submit" class="footer_btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer_bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
+                <div class="footer_bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/categories.js"></script>
+</body>
+
+</html>

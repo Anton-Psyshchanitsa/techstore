@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - TechStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="scss/styles.css">
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header_container">
+            <div class="header_wrapper">
+                <a href="index.html" class="header_logo">
+                    <div class="header_logo-icon">T</div>
+                    <span class="header_logo-text">TechStore</span>
+                </a>
+                <nav class="header_nav">
+                    <a href="index.html" class="header_link">Products</a>
+                    <a href="categories.html" class="header_link">Categories</a>
+                    <a href="deals.html" class="header_link">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
+                </nav>
+                <div class="header_actions">
+                    <button class="header_btn">
+                        <i data-lucide="search" class="header_icon"></i>
+                    </button>
+                    <a href="cart.html" class="header_btn cart-btn">
+                        <i data-lucide="shopping-cart" class="header_icon"></i>
+                        <span class="header_badge">0</span>
+                    </a>
+                    <button class="header_burger" id="burger-btn">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-container">
+
+            <div class="cart_empty" id="empty-state" style="display: none;">
+                <h2 class="cart_empty-title">Your Cart is Empty</h2>
+                <p class="cart_empty-text">Add some amazing products to get started!</p>
+                <a href="index.html" class="btn-continue-shopping">Continue shopping</a>
+            </div>
+
+            <div class="cart_layout" id="cart-layout">
+                <h1 class="cart_title" id="cart-title">Shopping Cart</h1>
+
+                <div class="cart_items" id="cart-items">
+                </div>
+
+                <aside class="cart_sidebar">
+                    <div class="cart-summary_card">
+                        <h2 class="cart-summary_title">Order Summary</h2>
+                        <div class="cart-summary_row">
+                            <span class="cart-summary_label">Subtotal</span>
+                            <span class="cart-summary_value" id="summary-subtotal">$0.00</span>
+                        </div>
+                        <div class="cart-summary_row" id="discount-row" style="display: none;">
+                            <span class="cart-summary_label">Discount (SAVE10)</span>
+                            <span class="cart-summary_value" id="summary-discount" style="color: #22C55E;">-$0.00</span>
+                        </div>
+                        <div class="cart-summary_row">
+                            <span class="cart-summary_label">Tax (8%)</span>
+                            <span class="cart-summary_value" id="summary-tax">$0.00</span>
+                        </div>
+                        <div class="cart-summary_divider"></div>
+                        <div class="cart-summary_row total">
+                            <span class="cart-summary_label">Total</span>
+                            <span class="cart-summary_value total-price" id="summary-total">$0.00</span>
+                        </div>
+
+                        <div class="cart-promo">
+                            <label class="cart-promo_label">Promo Code</label>
+                            <div class="cart-promo_input-group">
+                                <input type="text" placeholder="Enter code" class="cart-promo_input">
+                                <button class="cart-promo_btn">Apply</button>
+                            </div>
+                            <span class="cart-promo_hint">Try code "SAVE10" for 10% off</span>
+                        </div>
+
+                        <button class="btn-checkout">Proceed to Checkout</button>
+                    </div>
+
+                    <div class="cart-shipping_card">
+                        <div class="cart-shipping_header">
+                            <i data-lucide="truck"></i>
+                            <h3>Shipping Information</h3>
+                        </div>
+                        <div class="cart-shipping_content">
+                            <div class="shipping-info_item">
+                                <i data-lucide="map-pin" class="small-icon"></i>
+                                <div class="shipping-info_text">
+                                    <strong>Delivery Address</strong>
+                                    <p>123 Tech Street<br>San Francisco, CA 94105</p>
+                                </div>
+                            </div>
+                            <div class="shipping-info_divider"></div>
+                            <div class="shipping-info_item no-icon">
+                                <div class="shipping-info_text">
+                                    <strong>Estimated Delivery</strong>
+                                    <p>3-5 business days</p>
+                                    <span class="shipping-free">Free shipping on orders over $50</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_grid">
+                <div class="footer_col">
+                    <a href="index.html" class="footer_logo">
+                        <div class="footer_logo-icon">T</div>
+                        <span class="footer_logo-text">TechStore</span>
+                    </a>
+                    <p class="footer_text">
+                        Your trusted destination for premium electronics and tech accessories. Quality products,
+                        competitive prices, exceptional service.
+                    </p>
+                    <div class="footer_socials">
+                        <a href="#" class="footer_social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Quick Links</h3>
+                    <ul class="footer_list">
+                        <li><a href="index.html" class="footer_link">Shop All Products</a></li>
+                        <li><a href="deals.html" class="footer_link">Special Deals</a></li>
+                        <li><a href="about.html" class="footer_link">About Us</a></li>
+                        <li><a href="#" class="footer_link">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Customer Service</h3>
+                    <ul class="footer_list">
+                        <li><a href="#" class="footer_link">Shipping Information</a></li>
+                        <li><a href="#" class="footer_link">Returns & Exchanges</a></li>
+                        <li><a href="#" class="footer_link">FAQ</a></li>
+                        <li><a href="#" class="footer_link">Track Order</a></li>
+                    </ul>
+                    <div class="footer_contact">
+                        <span class="footer_label">Customer Support:</span>
+                        <span class="footer_phone">1-800-TECH-SHOP</span>
+                        <span class="footer_email">support@techstore.com</span>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Newsletter</h3>
+                    <p class="footer_text">
+                        Subscribe to get special offers, free<br>
+                        giveaways, and updates.
+                    </p>
+                    <form class="footer_form">
+                        <input type="email" class="footer_input" placeholder="Enter your email">
+                        <button type="submit" class="footer_btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer_bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
+                <div class="footer_bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/cart.js"></script>
+</body>
+
+</html>

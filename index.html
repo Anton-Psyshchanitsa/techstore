@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Premium Electronics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="scss/styles.css">
+
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header_container">
+            <div class="header_wrapper">
+                <a href="index.html" class="header_logo">
+                    <div class="header_logo-icon">T</div>
+                    <span class="header_logo-text">TechStore</span>
+                </a>
+
+                <nav class="header_nav">
+                    <a href="index.html" class="header_link active">Products</a>
+                    <a href="categories.html" class="header_link">Categories</a>
+                    <a href="deals.html" class="header_link">Deals</a>
+                    <a href="about.html" class="header_link">About</a>
+                </nav>
+
+                <div class="header_actions">
+                    <button class="header_btn">
+                        <i data-lucide="search" class="header_icon"></i>
+                    </button>
+                    <a href="cart.html" class="header_btn cart-btn">
+                        <i data-lucide="shopping-cart" class="header_icon"></i>
+                        <span class="header_badge">0</span>
+                    </a>
+                    <button class="header_burger" id="burger-btn">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-container">
+            <div class="catalog_container">
+                <div class="catalog_header">
+                    <h1 class="catalog_title">Premium Electronics</h1>
+                    <p class="catalog_subtitle">Discover our curated collection of high-quality tech products</p>
+                </div>
+
+                <div class="catalog_laypot">
+                    <div class="filters-overlay" id="filters-overlay"></div>
+                    <aside class="sidebar" id="filters-sidebar">
+                        <button class="sidebar_close" id="close-filters" type="button">
+                            <i data-lucide="x"></i>
+                        </button>
+                        <div class="sidebar_header">
+                            <i data-lucide="sliders-horizontal" class="sidebar_icon"></i>
+                            <h2 class="sidebar_title">Filters</h2>
+                        </div>
+
+                        <div class="filter">
+                            <h3 class="filter_title">Rating</h3>
+                            <div class="filter_options">
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="5">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">5+ Stars</span>
+                                </label>
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="4">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">4+ Stars</span>
+                                </label>
+                                <label class="checkbox_label">
+                                    <input type="checkbox" class="checkbox_input" value="3">
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">3+ Stars</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <h3 class="filter_title">Price Range</h3>
+                            <div class="range-slider">
+                                <div class="range-slider_track"></div>
+                                <div class="range-slider_fill"></div>
+                                <input type="range" min="0" max="3000" value="0" class="range-slider_input min">
+                                <input type="range" min="0" max="3000" value="3000" class="range-slider_input max">
+                            </div>
+                            <div class="range-slider_values">
+                                <span class="range-slider_val">$0</span>
+                                <span class="range-slider_val">$3000</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-clear" id="clear-filters">Clear All Filters</button>
+                    </aside>
+
+                    <section class="products">
+                        <div class="products_toolbar">
+                            <button class="products_filters-btn" id="open-filters" type="button">
+                                <i data-lucide="sliders-horizontal"></i>
+                                Filters
+                            </button>
+                            <span class="products_count">0 products</span>
+
+                            <div class="products_sort">
+                                <label class="products_sort-label">Sort by:</label>
+                                <div class="custom-select">
+                                    <div class="custom-select_trigger">
+                                        <span class="custom-select_value">Name (A-Z)</span>
+                                        <i data-lucide="chevron-down" class="select-icon"></i>
+                                    </div>
+                                    <div class="custom-select_options">
+                                        <span class="custom-select_option" data-value="name-asc">Name (A-Z)</span>
+                                        <span class="custom-select_option" data-value="name-desc">Name (Z-A)</span>
+                                        <span class="custom-select_option" data-value="price-asc">Price (Low to
+                                            High)</span>
+                                        <span class="custom-select_option" data-value="price-desc">Price (High to
+                                            Low)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="products_grid">
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_grid">
+                <div class="footer_col">
+                    <a href="index.html" class="footer_logo">
+                        <div class="footer_logo-icon">T</div>
+                        <span class="footer_logo-text">TechStore</span>
+                    </a>
+                    <p class="footer_text">
+                        Your trusted destination for premium electronics and tech accessories. Quality products,
+                        competitive prices, exceptional service.
+                    </p>
+                    <div class="footer_socials">
+                        <a href="#" class="footer_social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="footer_social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Quick Links</h3>
+                    <ul class="footer_list">
+                        <li><a href="index.html" class="footer_link">Shop All Products</a></li>
+                        <li><a href="deals.html" class="footer_link">Special Deals</a></li>
+                        <li><a href="about.html" class="footer_link">About Us</a></li>
+                        <li><a href="#" class="footer_link">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Customer Service</h3>
+                    <ul class="footer_list">
+                        <li><a href="#" class="footer_link">Shipping Information</a></li>
+                        <li><a href="#" class="footer_link">Returns & Exchanges</a></li>
+                        <li><a href="#" class="footer_link">FAQ</a></li>
+                        <li><a href="#" class="footer_link">Track Order</a></li>
+                    </ul>
+                    <div class="footer_contact">
+                        <span class="footer_label">Customer Support:</span>
+                        <span class="footer_phone">1-800-TECH-SHOP</span>
+                        <span class="footer_email">support@techstore.com</span>
+                    </div>
+                </div>
+
+                <div class="footer_col">
+                    <h3 class="footer_title">Newsletter</h3>
+                    <p class="footer_text">
+                        Subscribe to get special offers, free<br>
+                        giveaways, and updates.
+                    </p>
+                    <form class="footer_form">
+                        <input type="email" class="footer_input" placeholder="Enter your email">
+                        <button type="submit" class="footer_btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer_bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
+                <div class="footer_bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/select.js"></script>
+
+</body>
+
+</html>

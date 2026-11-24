@@ -1,0 +1,225 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    if (!productId) return;
+
+    const product = await API.getProductById(productId);
+    if (!product) return;
+
+    let currentImageIndex = 0;
+    const currentImages = product.images || [];
+
+    function renderStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalf = rating % 1 !== 0;
+        let stars = '';
+
+        for (let i = 0; i < fullStars; i++) {
+            stars += '<i data-lucide="star" class="star fill"></i>';
+        }
+
+        if (hasHalf) {
+            stars += '<i data-lucide="star-half" class="star fill"></i>';
+        }
+
+        const emptyStars = 5 - Math.ceil(rating);
+        for (let i = 0; i < emptyStars; i++) {
+            stars += '<i data-lucide="star" class="star"></i>';
+        }
+
+        return stars;
+    }
+
+    function updateMainImage() {
+        const mainImage = document.getElementById('main-image');
+        if (mainImage && currentImages[currentImageIndex]) {
+            mainImage.src = currentImages[currentImageIndex];
+            mainImage.alt = product.name;
+        }
+    }
+
+    function renderThumbnails() {
+        const container = document.getElementById('thumbnails');
+        if (!container) return;
+
+        container.innerHTML = currentImages.map((img, index) => `
+            <div class="product-gallery_thumb ${index === currentImageIndex ? 'product-gallery_thumb--active' : ''}" data-index="${index}">
+                <img src="${img}" alt="${product.name}">
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.product-gallery_thumb').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                currentImageIndex = parseInt(thumb.dataset.index, 10);
+                updateMainImage();
+                renderThumbnails();
+            });
+        });
+    }
+
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-price').textContent = `$${product.price}`;
+    document.getElementById('product-description').textContent = product.description;
+
+    const starsContainer = document.getElementById('product-stars');
+    if (starsContainer) {
+        starsContainer.innerHTML = renderStars(product.rating);
+    }
+
+    const ratingValueSpan = document.getElementById('product-rating-value');
+    if (ratingValueSpan) {
+        ratingValueSpan.textContent = `(${product.rating})`;
+    }
+
+    const reviewsSpan = document.getElementById('product-reviews');
+    if (reviewsSpan) {
+        reviewsSpan.textContent = `Based on ${product.reviews} reviews`;
+    }
+
+    const featuresList = document.getElementById('product-features');
+    if (featuresList && product.features) {
+        featuresList.innerHTML = product.features.map(feature => `<li>${feature}</li>`).join('');
+    }
+
+    const breadcrumbCategory = document.getElementById('breadcrumb-category');
+    if (breadcrumbCategory) {
+        breadcrumbCategory.textContent = product.category;
+    }
+
+    const breadcrumbProduct = document.getElementById('breadcrumb-product');
+    if (breadcrumbProduct) {
+        breadcrumbProduct.textContent = product.name;
+    }
+
+    const specsContainer = document.querySelector('.specs-table');
+    if (specsContainer && product.specifications) {
+        let specsHtml = '';
+        
+        // Если спецификации пришли как массив (старый формат)
+        if (Array.isArray(product.specifications)) {
+            specsHtml = product.specifications.map(spec => {
+                const [label, value] = String(spec).split(': ');
+                return `
+                    <div class="specs-row">
+                        <span class="specs-label">${label || ''}</span>
+                        <span class="specs-value">${value || ''}</span>
+                    </div>
+                `;
+            }).join('');
+        } 
+        // Если спецификации пришли как объект (новый формат)
+        else if (typeof product.specifications === 'object' && product.specifications !== null) {
+            specsHtml = Object.entries(product.specifications).map(([label, value]) => `
+                <div class="specs-row">
+                    <span class="specs-label">${label}</span>
+                    <span class="specs-value">${value}</span>
+                </div>
+            `).join('');
+        }
+        
+        specsContainer.innerHTML = specsHtml;
+    }
+
+    if (currentImages.length > 0) {
+        renderThumbnails();
+        updateMainImage();
+    }
+
+    document.getElementById('prev-image')?.addEventListener('click', () => {
+        if (currentImages.length > 0) {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            updateMainImage();
+            renderThumbnails();
+        }
+    });
+
+    document.getElementById('next-image')?.addEventListener('click', () => {
+        if (currentImages.length > 0) {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            updateMainImage();
+            renderThumbnails();
+        }
+    });
+
+    const qtyInput = document.querySelector('.qty-input');
+    const qtyMinus = document.querySelector('.qty-minus');
+    const qtyPlus = document.querySelector('.qty-plus');
+
+    if (qtyMinus && qtyInput) {
+        qtyMinus.addEventListener('click', () => {
+            const val = parseInt(qtyInput.value, 10) || 1;
+            if (val > 1) {
+                qtyInput.value = val - 1;
+            }
+        });
+    }
+
+    if (qtyPlus && qtyInput) {
+        qtyPlus.addEventListener('click', () => {
+            const val = parseInt(qtyInput.value, 10) || 1;
+            if (val < 99) {
+                qtyInput.value = val + 1;
+            }
+        });
+    }
+
+    const addToCartBtn = document.getElementById('add-to-cart');
+    addToCartBtn?.addEventListener('click', async () => {
+        const quantity = parseInt(qtyInput?.value, 10) || 1;
+        await addToCart(product.id, quantity, addToCartBtn);
+    });
+
+    const accordionHeader = document.getElementById('accordion-header');
+    const accordionContent = document.getElementById('accordion-content');
+
+    if (accordionHeader && accordionContent) {
+        accordionHeader.addEventListener('click', () => {
+            accordionHeader.classList.toggle('open');
+            accordionContent.classList.toggle('open');
+        });
+    }
+
+    // Исправлено: product.categoryCode изменено на product.category
+    const relatedProducts = await API.getProductsByCategory(product.category);
+    const filteredRelated = relatedProducts.filter(p => p.id !== product.id).slice(0, 4);
+    const relatedGrid = document.getElementById('related-products');
+    const relatedTitle = document.querySelector('.related-products_title');
+    const relatedSection = document.querySelector('.related-products');
+
+    if (relatedGrid && filteredRelated.length > 0) {
+        if (relatedTitle) relatedTitle.style.display = 'block';
+        if (relatedSection) relatedSection.style.display = 'block';
+
+        relatedGrid.innerHTML = filteredRelated.map(related => {
+            const relImg = (related.images && related.images.length > 0) ? related.images[0] : '';
+            return `
+                <a href="product.html?id=${related.id}" class="related-card">
+                    <div class="related-card_img-wrapper">
+                        <img src="${relImg}" alt="${related.name}" class="related-card_img">
+                    </div>
+                    <div class="related-card_info">
+                        <h3 class="related-card_title">${related.name}</h3>
+                        <div class="related-card_rating">
+                            <div class="rating-stars">
+                                ${renderStars(related.rating)}
+                            </div>
+                            <span class="rating-val">(${related.rating})</span>
+                        </div>
+                        <div class="related-card_footer">
+                            <span class="related-card_price">$${related.price}</span>
+                            <span class="related-card_category">${related.category}</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }).join('');
+    } else {
+        if (relatedTitle) relatedTitle.style.display = 'none';
+        if (relatedSection) relatedSection.style.display = 'none';
+    }
+
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
